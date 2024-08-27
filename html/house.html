@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <title>Navbar Example</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <!-- header  -->
+    <nav class="navbar navbar-expand-lg bg-dark">
+      <a class="navbar-brand" href="#">
+        <img src="/logo.png" alt="logo" class="logo" />
+      </a>
+      <!-- bên trái -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link text-white" href="#"
+              >Trang Chủ <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Cho thuê phòng trọ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Nhà cho thuê</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Cho thuê căn hộ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Tìm người ở ghép</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Bảng dịch vụ</a>
+          </li>
+        </ul>
+      </div>
+      <!-- bên phải -->
+      <div class="login-signup-post">
+        <button class="heart-button">
+          <i class="fa-regular fa-heart">
+            <span class="tooltip">Danh sách tin đã lưu</span>
+          </i>
+        </button>
+
+        <a class="nav-link text-white" href="#">Đăng nhập</a>
+        <a class="nav-link text-white" href="#">Đăng ký</a>
+        <button class="post-button">Đăng tin</button>
+      </div>
+    </nav>
+    <!-- khung hiện thị phòng -->
+    <div class="container-room mx-auto d-flex height: 100vh">
+      <div class="left-section flex-grow-1" style="flex: 0 0 75%">
+        <!-- thanh hiện thị bên dưới thể hiện có bao nhiêu cái ảnh/video -->
+        <div
+          id="carouselExampleIndicators"
+          class="carousel slide mt-3"
+          data-ride="carousel"
+        >
+          <ol class="carousel-indicators">
+            <li
+              data-target="#carouselExampleIndicators"
+              data-slide-to="0"
+              class="active"
+            ></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+          </ol>
+          <!-- chỗ nhét ảnh và video -->
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block w-100" src="/hanoi.jpg" alt="First slide" />
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="/hcm.webp" alt="Second slide" />
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="/danang.jpg" alt="Third slide" />
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="/danang.jpg" alt="Fourth slide" />
+            </div>
+            <div class="carousel-item" style="height: 600px">
+              <iframe
+                class="d-block w-100"
+                src="https://www.youtube.com/embed/SbjW7j6jG8k?si=bdyHJk8xJYFAI99O"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+          <a
+            class="carousel-control-prev"
+            href="#carouselExampleIndicators"
+            role="button"
+            data-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#carouselExampleIndicators"
+            role="button"
+            data-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        <!-- Ô hiện thị các thông tin về căn phòng -->
+        <div class="room-info-card p-3 border rounded">
+          <!-- Dòng 1: Tiêu đề phòng -->
+          <h3 class="room-title">
+            KÝ TÚC XÁ SINH VIÊN - DOUBLE 11 - XÂY MỚI 100%
+          </h3>
+          <!-- Dòng 2: Địa chỉ -->
+          <p class="room-address text-muted">
+            <i class="fa-solid fa-location-dot" style="color: #11a1ee"></i> Địa
+            chỉ: 236/12 Đường Điện Biên Phủ, Phường 17, Quận Bình Thạnh, Hồ Chí
+            Minh
+          </p>
+          <!-- Dòng 3: Mức giá, diện tích, phòng ngủ -->
+          <div class="room-details">
+            <div class="details-text">
+              <span class="price2 mr-4">Giá: 1.655 triệu/tháng</span>
+              <span class="area mr-4">Diện tích: 90 m²</span>
+              <span class="bedrooms mr-4">Phòng ngủ: 2</span>
+            </div>
+            <div class="details-icons">
+              <div class="icon-wrapper">
+                <i class="fa-regular fa-share-from-square"></i>
+                <span class="tooltip">Chia sẻ</span>
+              </div>
+              <div class="icon-wrapper">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span class="tooltip">Báo cáo tin xấu</span>
+              </div>
+              <div class="icon-wrapper">
+                <i class="fa-regular fa-heart"></i>
+                <span class="tooltip">Lưu tin</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dòng 4: Mô tả căn phòng -->
+          <h4 class="room-description">Thông tin mô tả</h4>
+          <p class="room-description-details">
+            Ký Túc Xá Tiện Nghi tại trung tâm QUẬN BÌNH THẠNH. <br />
+
+            Giá chỉ từ: 1.655.000 VND/tháng/giường (tầng 1) <br />
+
+            Vị trí: tiện lợi đi lại. Gần các quận trung tâm và các trường Đại
+            học như: Đại học Hồng Bàng, Đại học Kinh tế Tài chính TP.HCM, Đại
+            học Công nghệ TP.HCM, Đại học Giao thông vận tải TP.HCM, Đại học Mỹ
+            Thuật TP.HCM,... <br />
+
+            Tiện nghi: <br />
+
+            Camera giám sát (khu vực chung) 24/7, Khóa vân tay 2 lớp <br />
+
+            Giờ giắc tự do <br />
+
+            Vị trí hẻm xe hơi, khu an ninh sạch sẽ, gần trung tâm <br />
+
+            Giường, nệm, rèm giường riêng tư. <br />
+
+            Tủ quần áo, kệ giày, tủ cá nhân có khóa. <br />
+
+            Wifi, điện nước, giặt sấy miễn phí.<br />
+
+            Khu vực bếp chung đầy đủ tiện nghi (Tủ lạnh, dụng cụ bếp)<br />
+
+            ️Chi phí không bao gồm phí gửi xe.<br />
+
+            Phí gửi xe 200.000đ/tháng/xe. Khu vực bãi xe rộng rãi ngay đối diện
+            nhà.<br />
+          </p>
+          <!-- Dòng 5: Đặc điểm căn phòng -->
+          <h4 class="room-features-title">Đặc điểm căn phòng</h4>
+          <div class="container-dac-diem">
+            <div class="row">
+              <!-- Column 1 -->
+              <div class="col">
+                <hr />
+                <div class="feature-item">
+                  <i class="fa-solid fa-house"></i>
+                  <span class="feature-text"
+                    >Diện tích: <span class="value">x m²</span></span
+                  >
+                </div>
+                <hr />
+                <div class="feature-item">
+                  <i class="fa-solid fa-bed"></i>
+                  <span class="feature-text"
+                    >Số phòng ngủ: <span class="value">x</span></span
+                  >
+                </div>
+                <hr />
+                <div class="feature-item">
+                  <i class="fa-solid fa-couch"></i>
+                  <span class="feature-text"
+                    >Nội thất:<span class="value">
+                      Danh sách nội thất</span
+                    ></span
+                  >
+                </div>
+                <hr />
+              </div>
+              <!-- Column 2 -->
+              <div class="col">
+                <hr />
+                <div class="feature-item">
+                  <i class="fa-solid fa-money-bill-1-wave"></i>
+                  <span class="feature-text"
+                    >Mức giá: <span class="value">x VND</span></span
+                  >
+                </div>
+                <hr />
+                <div class="feature-item">
+                  <i class="fa-solid fa-toilet"></i>
+                  <span class="feature-text"
+                    >Số toilet: <span class="value">x</span></span
+                  >
+                </div>
+                <hr />
+              </div>
+            </div>
+          </div>
+          <!--dòng 6: đặc điểm đăng tin -->
+          <h4 class="room-news-title">Đặc điểm tin</h4>
+          <table class="custom-table">
+            <tr>
+              <th class="custom-col-1">Mã tin:</th>
+              <td class="custom-col-2">#20126</td>
+            </tr>
+            <tr>
+              <th class="custom-col-1">Chuyên mục:</th>
+              <td class="custom-col-2">Cho thuê phòng trọ Quận 8</td>
+            </tr>
+            <tr>
+              <th class="custom-col-1">Khu vực:</th>
+              <td class="custom-col-2">Cho thuê phòng trọ Hồ Chí Minh</td>
+            </tr>
+            <tr>
+              <th class="custom-col-1">Loại tin rao:</th>
+              <td class="custom-col-2">Phòng trọ, nhà trọ</td>
+            </tr>
+            <tr>
+              <th class="custom-col-1">Đối tượng thuê:</th>
+              <td class="custom-col-2">Tất cả</td>
+            </tr>
+            <tr>
+              <th class="custom-col-1">Gói tin:</th>
+              <td class="custom-col-2">Tin VIP nổi bật</td>
+            </tr>
+            <tr>
+              <th class="custom-col-1">Ngày đăng:</th>
+              <td class="custom-col-2">Chủ Nhật, 20:27 18/08/2024</td>
+            </tr>
+            <tr>
+              <th class="custom-col-1">Ngày hết hạn:</th>
+              <td class="custom-col-2">Chủ Nhật, 20:27 25/08/2024</td>
+            </tr>
+          </table>
+          <!-- Map -->
+          <p class="map-title">Bản đồ</p>
+          <p class="map-address">
+            Địa chỉ: 236/12 Đường Điện Biên Phủ, Phường 17, Quận Bình Thạnh, Hồ
+            Chí Minh
+          </p>
+          <div class="map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d380.429727692018!2d105.73599343294889!3d20.955698993461375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1svi!2s!4v1724163615356!5m2!1svi!2s"
+              width="600"
+              height="450"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+
+
+      </div>
+
+      <!-- khu hiện thị thông tin của chủ phòng -->
+      <div class="right-section" style="flex: 0 0 25%">
+        <!-- ô thông tin liên hệ của người chủ -->
+        <div class="card custom-card">
+          <div class="card-body text-center">
+            <img
+              src="/khanhhoa.jpeg"
+              alt="Avatar"
+              class="rounded-circle mb-3"
+              style="width: 100px; height: 100px"
+            />
+            <div>
+              <h5 class="card-title">Nguyễn Hữu Thắng</h5>
+              <a href="#" class="text-muted"
+                >Xem thêm <i class="fa-solid"></i
+              ></a>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center mt-3">
+              <a href="#" class="btn btn-sm mb-2 custom-btn"
+                >SĐT: 098765****. Hiện thêm</a
+              >
+              <a href="#" class="btn btn-sm mb-2">
+                <img
+                  src="/icons8-zalo-48.png"
+                  alt="Zalo"
+                  style="width: 25px; height: 25px; margin-right: 5px"
+                />
+                Chat qua Zalo
+              </a>
+              <a href="#" class="btn btn-sm mb-2">Gửi Mail</a>
+              <a href="#" class="btn btn-sm">Yêu cầu liên hệ lại</a>
+            </div>
+          </div>
+        </div>
+        <!-- TIN NỔI BẬT -->
+        <div class="news-table bg-light">
+          <h4 class="mt-4 mb-3">Tin Tức Nổi Bật</h4>
+          <div class="row news-row align-items-center">
+            <div class="col-3">
+              <img src="/binhduong.jpg" alt="Tin tức 1" class="news-image" />
+            </div>
+            <div class="col-9 news-content">
+              <div class="news-title">Phòng trọ full nội thất Gò Vấp</div>
+              <div class="news-info">
+                <div class="news-info-money">1 triệu/tháng</div>
+                <div class="news-info-time">1 ngày trước</div>
+              </div>
+            </div>
+          </div>
+          <div class="row news-row align-items-center">
+            <div class="col-3">
+              <img src="/danang.jpg" alt="Tin tức 2" class="news-image" />
+            </div>
+            <div class="col-9 news-content">
+              <div class="news-title">Phòng trọ full nội thất Gò Vấp</div>
+              <div class="news-info">
+                <div class="news-info-money">1 triệu/tháng</div>
+                <div class="news-info-time">1 ngày trước</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row news-row align-items-center">
+            <div class="col-3">
+              <img src="/dongnai.jpg" alt="Tin tức 3" class="news-image" />
+            </div>
+            <div class="col-9 news-content">
+              <div class="news-title">Phòng trọ full nội thất Gò Vấp</div>
+              <div class="news-info">
+                <div class="news-info-money">1 triệu/tháng</div>
+                <div class="news-info-time">1 ngày trước</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row news-row align-items-center">
+            <div class="col-3">
+              <img src="/hanoi.jpg" alt="Tin tức 4" class="news-image" />
+            </div>
+            <div class="col-9 news-content">
+              <div class="news-title">Phòng trọ full nội thất Gò Vấp</div>
+              <div class="news-info">
+                <div class="news-info-money">1 triệu/tháng</div>
+                <div class="news-info-time">1 ngày trước</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row news-row align-items-center">
+            <div class="col-3">
+              <img src="/hcm.webp" alt="Tin tức 5" class="news-image" />
+            </div>
+            <div class="col-9 news-content">
+              <div class="news-title">Phòng trọ full nội thất Gò Vấp</div>
+              <div class="news-info">
+                <div class="news-info-money">1 triệu/tháng</div>
+                <div class="news-info-time">1 ngày trước</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row news-row align-items-center">
+            <div class="col-3">
+              <img src="/khanhhoa.jpeg" alt="Tin tức 6" class="news-image" />
+            </div>
+            <div class="col-9 news-content">
+              <div class="news-title">Phòng trọ full nội thất Gò Vấp</div>
+              <div class="news-info">
+                <div class="news-info-money">1 triệu/tháng</div>
+                <div class="news-info-time">1 ngày trước</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- TIN MỚI ĐĂNG -->
+        <div class="news-table bg-light">
+          <h4 class="mt-4 mb-3">Tin Tức Mới Đăng</h4>
+          <div class="row news-row align-items-center">
+            <div class="col-3">
+              <img src="/binhduong.jpg" alt="Tin tức 1" class="news-image" />
+            </div>
+            <div class="col-9 news-content">
+              <div class="news-title">Phòng trọ full nội thất Gò Vấp</div>
+              <div class="news-info">
+                <div class="news-info-money">1 triệu/tháng</div>
+                <div class="news-info-time">1 ngày trước</div>
+              </div>
+            </div>
+          </div>
+          <div class="row news-row align-items-center">
+            <div class="col-3">
+              <img src="/danang.jpg" alt="Tin tức 2" class="news-image" />
+            </div>
+            <div class="col-9 news-content">
+              <div class="news-title">Phòng trọ full nội thất Gò Vấp</div>
+              <div class="news-info">
+                <div class="news-info-money">1 triệu/tháng</div>
+                <div class="news-info-time">1 ngày trước</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row news-row align-items-center">
+            <div class="col-3">
+              <img src="/dongnai.jpg" alt="Tin tức 3" class="news-image" />
+            </div>
+            <div class="col-9 news-content">
+              <div class="news-title">Phòng trọ full nội thất Gò Vấp</div>
+              <div class="news-info">
+                <div class="news-info-money">1 triệu/tháng</div>
+                <div class="news-info-time">1 ngày trước</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row news-row align-items-center">
+            <div class="col-3">
+              <img src="/hanoi.jpg" alt="Tin tức 4" class="news-image" />
+            </div>
+            <div class="col-9 news-content">
+              <div class="news-title">Phòng trọ full nội thất Gò Vấp</div>
+              <div class="news-info">
+                <div class="news-info-money">1 triệu/tháng</div>
+                <div class="news-info-time">1 ngày trước</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row news-row align-items-center">
+            <div class="col-3">
+              <img src="/hcm.webp" alt="Tin tức 5" class="news-image" />
+            </div>
+            <div class="col-9 news-content">
+              <div class="news-title">Phòng trọ full nội thất Gò Vấp</div>
+              <div class="news-info">
+                <div class="news-info-money">1 triệu/tháng</div>
+                <div class="news-info-time">1 ngày trước</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row news-row align-items-center">
+            <div class="col-3">
+              <img src="/khanhhoa.jpeg" alt="Tin tức 6" class="news-image" />
+            </div>
+            <div class="col-9 news-content">
+              <div class="news-title">Phòng trọ full nội thất Gò Vấp</div>
+              <div class="news-info">
+                <div class="news-info-money">1 triệu/tháng</div>
+                <div class="news-info-time">1 ngày trước</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row news-row align-items-center">
+            <div class="col-3">
+              <img src="/hanoi.jpg" alt="Tin tức 4" class="news-image" />
+            </div>
+            <div class="col-9 news-content">
+              <div class="news-title">Phòng trọ full nội thất Gò Vấp</div>
+              <div class="news-info">
+                <div class="news-info-money">1 triệu/tháng</div>
+                <div class="news-info-time">1 ngày trước</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row news-row align-items-center">
+            <div class="col-3">
+              <img src="/dongnai.jpg" alt="Tin tức 3" class="news-image" />
+            </div>
+            <div class="col-9 news-content">
+              <div class="news-title">Phòng trọ full nội thất Gò Vấp</div>
+              <div class="news-info">
+                <div class="news-info-money">1 triệu/tháng</div>
+                <div class="news-info-time">1 ngày trước</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row news-row align-items-center">
+            <div class="col-3">
+              <img src="/danang.jpg" alt="Tin tức 2" class="news-image" />
+            </div>
+            <div class="col-9 news-content">
+              <div class="news-title">Phòng trọ full nội thất Gò Vấp</div>
+              <div class="news-info">
+                <div class="news-info-money">1 triệu/tháng</div>
+                <div class="news-info-time">1 ngày trước</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row news-row align-items-center">
+            <div class="col-3">
+              <img src="/dongnai.jpg" alt="Tin tức 3" class="news-image" />
+            </div>
+            <div class="col-9 news-content">
+              <div class="news-title">Phòng trọ full nội thất Gò Vấp</div>
+              <div class="news-info">
+                <div class="news-info-money">1 triệu/tháng</div>
+                <div class="news-info-time">1 ngày trước</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- tin ở khu vực quận  -->
+        <div class="ward-table bg-light">
+          <h4 class="mt-3 mb-3">Khu vực quận</h4>    
+            <div class="ward-row">
+                <i class="fa-solid fa-chevron-right ward-icon"></i>
+                <div class="ward-name">Phường 1</div>
+                <div class="ward-count">(100)</div>
+            </div>          
+            <div class="ward-row">
+                <i class="fa-solid fa-chevron-right ward-icon"></i>
+                <div class="ward-name">Phường 2</div>
+                <div class="ward-count">(100)</div>
+            </div>
+            <div class="ward-row">
+                <i class="fa-solid fa-chevron-right ward-icon"></i>
+                <div class="ward-name">Phường 3</div>
+                <div class="ward-count">(100)</div>
+            </div>
+            <div class="ward-row">
+                <i class="fa-solid fa-chevron-right ward-icon"></i>
+                <div class="ward-name">Phường 4</div>
+                <div class="ward-count">(100)</div>
+            </div>
+            <div class="ward-row">
+                <i class="fa-solid fa-chevron-right ward-icon"></i>
+                <div class="ward-name">Phường 5</div>
+                <div class="ward-count">(100)</div>
+            </div>
+            <div class="ward-row">
+                <i class="fa-solid fa-chevron-right ward-icon"></i>
+                <div class="ward-name">Phường 6</div>
+                <div class="ward-count">(100)</div>
+            </div>
+            <div class="ward-row">
+                <i class="fa-solid fa-chevron-right ward-icon"></i>
+                <div class="ward-name">Phường 7</div>
+                <div class="ward-count">(100)</div>
+            </div>
+            <div class="ward-row">
+                <i class="fa-solid fa-chevron-right ward-icon"></i>
+                <div class="ward-name">Phường 8</div>
+                <div class="ward-count">(100)</div>
+            </div>
+            <div class="ward-row">
+                <i class="fa-solid fa-chevron-right ward-icon"></i>
+                <div class="ward-name">Phường 9</div>
+                <div class="ward-count">(100)</div>
+            </div>
+            <div class="ward-row">
+                <i class="fa-solid fa-chevron-right ward-icon"></i>
+                <div class="ward-name">Phường 10</div>
+                <div class="ward-count">(100)</div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer bg-light py-4">
+      <div class="container">
+        <div class="row align-items-center mb-4">
+          <div class="col-md-3 text-center text-md-left">
+            <img src="/logo.png" alt="logo" class="logo" />
+          </div>
+          <div class="col-md-3 hotline text-center text-md-left">
+            <i class="fa-solid fa-phone-volume"></i>
+            <p class="mb-0">
+              Hotline<br /><span class="phone-number">1900 6969</span>
+            </p>
+          </div>
+          <div class="col-md-3 support text-center text-md-left">
+            <i class="fa-regular fa-circle-question"></i>
+            <p class="mb-0">
+              Hỗ trợ khách hàng
+              <a href="trogiup.oceanhouse.com.vn">trogiup.oceanhouse.com.vn</a>
+            </p>
+          </div>
+          <div class="col-md-3 care text-center text-md-left">
+            <i class="fa-solid fa-hospital-user"></i>
+            <p class="mb-0">
+              Chăm sóc khách hàng
+              <a href="mailto:hotro@oceanhouse.com.vn"
+                >hotro@oceanhouse.com.vn</a
+              >
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 company-section">
+            <div class="company-info">CÔNG TY CỔ PHẦN OCEAN HOUSE VIỆT NAM</div>
+            <div class="address">
+              <i class="fa-solid fa-earth-americas"></i> 112 A1, Nguyễn Qúy Đức,
+              Thanh Xuân Bắc, Hà Nội
+            </div>
+            <div class="phone">
+              <i class="fa-solid fa-phone-volume icon2"></i> 1900 6969 - 0912
+              345 678
+            </div>
+            <div class="app">
+              <i class="fa-brands fa-google-play"></i> GooglePlay
+              <i class="fa-brands fa-app-store-ios ic"></i> AppStore
+            </div>
+          </div>
+          <div class="col-md-3 company-section2">
+            <div class="flex-container">
+              <div class="company-info">HƯỚNG DẪN</div>
+              <div class="us">Về chúng tôi</div>
+              <div class="price">Báo Giá & Hỗ Trợ</div>
+              <div class="question">Câu hỏi thường gặp</div>
+              <div class="error">Góp ý báo lỗi</div>
+              <div class="map">Sitemap</div>
+            </div>
+          </div>
+          <div class="col-md-3 company-section3">
+            <div class="flex-container3">
+              <div class="company-info3">QUY ĐỊNH</div>
+              <div class="us3">Quy định đăng tin</div>
+              <div class="price3">Quy chế hoạt động</div>
+              <div class="question3">Điều khoản thỏa thuận</div>
+              <div class="error3">Chính sách bảo mật</div>
+              <div class="map3">Giải quyết khiếu nại</div>
+            </div>
+          </div>
+          <div class="col-md-3 company-section4">
+            <div class="company-info4">ĐĂNG KÝ NHẬN TIN</div>
+            <div class="email">
+              <input type="email" placeholder="Nhập email của bạn" />
+              <button class="subscribe-button">
+                <i class="fa-regular fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/js/scripts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

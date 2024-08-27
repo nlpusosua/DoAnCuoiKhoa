@@ -1,0 +1,1104 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+/* header****************************************************************************************************************** */
+/* header bên trái */
+.navbar {
+  background-color: white !important; /* Màu nền trắng */
+  box-shadow: 0 20px 5px -5px #f9f9f9; /* Bóng đổ sáng hơn */
+  height: 98px; /* Chiều cao 98px */
+}
+.navbar-brand .logo {
+  height: 100%; /* Chiều cao bằng 100% của thanh điều hướng */
+  max-height: 98px; /* Đảm bảo logo không vượt quá 98px */
+  width: auto;
+}
+.navbar-nav .nav-link {
+  color: black !important; /* Màu chữ đen */
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  position: relative; /* Để định vị ::after */
+}
+
+.navbar-nav .nav-link::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px; /* Chiều cao của thanh màu đỏ */
+  background: red; /* Màu đỏ */
+  position: absolute;
+  bottom: -3px; /* Khoảng cách từ chữ đến thanh màu đỏ, gần hơn */
+  left: 0;
+  transition: width 0.5s, transform 0.5s; /* Hiệu ứng trượt */
+}
+
+.navbar-nav .nav-item:hover .nav-link::after {
+  width: 100%; /* Độ dài thanh màu đỏ bằng độ dài của chữ */
+  transform: translateX(0); /* Hiệu ứng trượt từ trái sang phải */
+}
+
+/* header bên phải */
+
+/* icon heart */
+.login-signup-post .fa-heart {
+  font-size: 1.3em;
+  border: none;
+  outline: none; /* Loại bỏ viền khi focus */
+}
+
+.login-signup-post .heart-button {
+  position: relative; /* Để định vị tooltip */
+  border: none; /* Remove the border */
+  background-color: white;
+  outline: none; /* Loại bỏ viền khi focus */
+  cursor: pointer; /* Thay đổi con trỏ khi di chuột */
+}
+
+.login-signup-post .heart-button .fa-heart {
+  border: none; /* Remove the border when clicked */
+  outline: none; /* Loại bỏ viền khi focus */
+}
+
+.login-signup-post .heart-button .tooltip {
+  visibility: hidden; /* Ẩn tooltip ban đầu */
+  width: 150px; /* Chiều rộng của tooltip */
+  background-color: rgba(0, 0, 0, 0.7); /* Màu nền đen nhạt */
+  color: #fff; /* Màu chữ trắng */
+  text-align: center; /* Canh giữa chữ */
+  border-radius: 5px; /* Bo góc cho tooltip */
+  padding: 5px 0; /* Padding trên và dưới */
+  position: absolute; /* Định vị tooltip */
+  z-index: 1; /* Đảm bảo tooltip nằm trên cùng */
+  bottom: -35px; /* Vị trí của tooltip dưới icon */
+  left: 50%; /* Canh giữa tooltip theo chiều ngang */
+  margin-left: -75px; /* Dịch chuyển để tooltip canh giữa */
+  opacity: 0; /* Ẩn tooltip ban đầu */
+  transition: opacity 0.3s; /* Hiệu ứng mờ dần */
+}
+
+.login-signup-post .heart-button:hover .tooltip {
+  visibility: visible; /* Hiển thị tooltip khi di chuột vào */
+  opacity: 1; /* Hiển thị tooltip */
+}
+
+/* Add login, signup, and post buttons */
+.login-signup-post {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  justify-content: space-around;
+}
+
+.login-signup-post .nav-link {
+  color: black !important; /* Màu chữ đen */
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  position: relative;
+}
+
+.login-signup-post .post-button {
+  color: black !important; /* Màu chữ đen */
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  border: 1px solid lightgray; /* Viền mỏng hơn */
+  border-radius: 5px; /* Bo tròn 4 cạnh */
+  padding: 5px 10px; /* Độ cao và độ rộng của nội dung */
+  background-color: white; /* Màu nền trắng */
+  position: relative;
+}
+
+/* Body *************************/
+/* thanh tìm kiếm ************************************************************************************************************************* */
+body {
+  font-family: "Fira Sans", sans-serif;
+}
+
+.search-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto; /* Thêm khoảng cách phía trên */
+  padding: 20px;
+  background-color: #4f4f4f;
+  border-radius: 5px;
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px; /* Bo tròn cả 4 góc */
+  outline: none;
+  height: 40px; /* Chiều cao của ô input */
+}
+
+.search-button {
+  padding: 0 20px; /* Giảm padding để chữ không xuống dòng */
+  border: none;
+  background-color: red;
+  color: white;
+  border-radius: 5px; /* Bo tròn cả 4 góc */
+  cursor: pointer;
+  height: 40px; /* Chiều cao bằng với ô input */
+  white-space: nowrap; /* Ngăn chữ xuống dòng */
+  margin-left: 10px; /* Khoảng cách giữa ô input và nút */
+}
+
+/* thanh tìm kiếm khi nhấn vào */
+.search-container {
+  position: relative;
+}
+
+.dropdown-search {
+  position: absolute;
+  top: 50px; /* Điều chỉnh theo chiều cao của ô input và nút */
+  left: 0;
+  width: 100%;
+  max-height: 300px; /* Điều chỉnh chiều cao tối đa nếu cần */
+  overflow-y: auto;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 0 0 5px 5px;
+  display: none;
+  z-index: 10;
+  padding: 10px; /* Thêm padding để nội dung không dính vào cạnh */
+  box-sizing: border-box; /* Bao gồm padding và border vào kích thước tổng thể */
+}
+
+.dropdown-search .highlighted-cities {
+  display: flex;
+  justify-content: space-between; /* Căn chỉnh các thành phố cách đều nhau */
+  flex-wrap: nowrap;
+  margin-top: 10px;
+}
+
+.city {
+  flex: 0 0 16%; /* Mỗi thành phố chiếm khoảng 16% chiều ngang */
+  position: relative;
+  margin: 0 2px; /* Khoảng cách giữa các ô */
+  overflow: hidden; /* Đảm bảo các phần tử con không tràn ra ngoài */
+}
+
+.city img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: brightness(0.7); /* Làm mờ đen một chút */
+}
+
+.city-name {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 14px;
+  padding: 2px 5px;
+  white-space: nowrap; /* Đảm bảo tên địa danh không xuống dòng */
+}
+
+.city:hover img {
+  filter: brightness(1); /* Làm sáng hình ảnh khi di chuột vào */
+  transform: scale(1.1); /* Zoom gần hình ảnh khi di chuột vào */
+}
+/* Tùy chỉnh thanh cuộn */
+.dropdown-search::-webkit-scrollbar {
+  width: 6px; /* Chiều rộng của thanh cuộn */
+}
+
+.dropdown-search::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Màu nền của thanh cuộn */
+}
+
+.dropdown-search::-webkit-scrollbar-thumb {
+  background: #888; /* Màu của thanh cuộn */
+  border-radius: 5px; /* Bo tròn các góc của thanh cuộn */
+}
+
+.dropdown-search::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Màu của thanh cuộn khi di chuột vào */
+}
+
+.dropdown-search .all-cities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Khoảng cách giữa các ô */
+}
+.dropdown-search .title2 {
+  margin-top: 20px;
+}
+
+.dropdown-search .title {
+  width: 100%;
+  font-weight: bold;
+  color: #2c2c2c;
+  font-size: 20px; /* Kích thước chữ của tiêu đ�� */
+  font-family: "Fira Sans", sans-serif;
+  margin-bottom: 30px;
+}
+.dropdown-search .title1,
+.dropdown-search .title2 {
+  width: 100%;
+  font-weight: bold;
+  color: #a2a2a2;
+  font-size: 12px; /* Kích thước chữ của tiêu đề */
+  border-bottom: 1px solid #ccc; /* Đường viền dưới tiêu đề */
+}
+
+.dropdown-search .all-cities > div {
+  flex: 1 1 calc(16.666% - 10px); /* 6 cột với khoảng cách giữa các cột */
+  box-sizing: border-box;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 12px; /* Kích thước chữ nhỏ hơn */
+  opacity: 0.8; /* Làm cho chữ mờ hơn một chút */
+}
+
+.dropdown-search .all-cities > div:hover {
+  background-color: #ddd; /* Hiệu ứng hover cho các tỉnh thành */
+}
+
+/* 3 thanh lọc */
+.filter-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.filter-button-wrapper {
+  position: relative;
+  flex: 1; /* Đảm bảo mỗi wrapper chiếm đều không gian */
+  margin-right: 10px; /* Khoảng cách giữa các nút */
+}
+
+.filter-button-wrapper:last-child {
+  margin-right: 0; /* Loại bỏ khoảng cách phải cho nút cuối cùng */
+}
+
+.filter-button {
+  width: 100%; /* Chiếm toàn bộ chiều rộng của filter-button-wrapper */
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.filter-dropdown {
+  position: absolute;
+  top: 100%; /* Xuống ngay dưới nút */
+  left: 0;
+  width: 100%; /* Đảm bảo dropdown có cùng chiều rộng với nút */
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 0 0 5px 5px;
+  display: none;
+  z-index: 10;
+}
+
+.filter-dropdown-content {
+  padding: 10px;
+}
+
+.filter-dropdown-content div {
+  padding: 5px 0;
+}
+
+.filter-button .fa-chevron-up {
+  transform: rotate(180deg); /* Xoay mũi tên lên */
+  transition: transform 0.8s ease;
+}
+
+.filter-button .fa-chevron-down {
+  transition: transform 0.8s ease;
+}
+
+/* ô hiện thị (body) ************************************************************************************************************ */
+.container {
+  max-width: 1600px; /* Đặt kích thước tối đa cho container */
+  margin: auto;
+}
+
+.room-item {
+  width: 380px; /* Đặt kích thước chiều rộng cho mỗi box */
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; /* Áp dụng shadow */
+  background-color: #fff; /* Đặt màu nền cho room-item */
+  border-radius: 8px; /* Tùy chọn: làm cho các góc viền bo tròn */
+  overflow: hidden; /* Đảm bảo ảnh không tràn ra ngoài phần tử */
+}
+
+.room-poster {
+  padding: 0; /* Loại bỏ padding để ảnh tràn viền */
+  margin: -10px -10px 0 -10px; /* Đảm bảo ảnh tràn ra ngoài shadow */
+  overflow: hidden; /* Ẩn phần tràn của ảnh */
+}
+
+.room-poster img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Đảm bảo ảnh bao phủ toàn bộ phần tử */
+}
+
+.news-item {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; /* Áp dụng shadow */
+  background-color: #fff; /* Đặt màu nền cho news-item */
+  border-radius: 8px; /* Làm bo tròn các góc */
+  padding: 20px; /* Đảm bảo padding để shadow không bị ảnh hưởng */
+  margin-bottom: 20px; /* Khoảng cách giữa các phần tử */
+}
+
+/* footer************************************************************************************************************ */
+.footer {
+  background-color: #f8f9fa;
+  padding: 1rem 0;
+}
+
+.footer .container > .row:first-child .col-md-3 img {
+  margin-right: 15px;
+}
+
+.footer .container > .row {
+  margin-top: 1rem;
+}
+
+/* hàng đầu tiên của footer */
+.logo {
+  width: 200px;
+  height: 200px;
+  object-fit: cover; /* Đảm bảo hình ảnh vừa khít trong kích thước đã đặt */
+}
+
+.fa-phone-volume {
+  font-size: 2em;
+  color: #343a40;
+  display: inline-block; /* Đảm bảo transform hoạt động đúng cách */
+  transform: rotate(315deg);
+}
+
+.fa-circle-question,
+.fa-hospital-user {
+  font-size: 2em;
+  color: #343a40;
+  display: inline-block; /* Đảm bảo transform hoạt động đúng cách */
+}
+
+.col-md-3 {
+  display: flex;
+  align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.col-md-3 i {
+  margin-right: 20px; /* Khoảng cách giữa biểu tượng và văn bản */
+}
+
+.col-md-3 p {
+  margin: 0; /* Đảm bảo không có khoảng cách thừa */
+}
+
+.hotline,
+.support,
+.care {
+  display: flex;
+  align-items: center;
+}
+
+.support {
+  position: relative; /* Đặt vị trí tương đối để di chuyển phần tử */
+  left: -60px; /* Di chuyển sang trái 11px */
+}
+
+.hotline .phone-number {
+  font-weight: bold;
+}
+
+/* Màu liên kết mặc định */
+.col-md-3 a {
+  color: #000;
+  text-decoration: none; /* Bỏ gạch chân mặc định */
+  font-weight: bold;
+}
+
+/* Màu liên kết khi di chuột qua */
+.col-md-3 a:hover {
+  color: #555;
+  font-weight: bold;
+}
+
+/* CỘT 1 của footer */
+.text-center {
+  font-weight: bold;
+}
+
+/* Điều chỉnh khoảng cách giữa biểu tượng và nội dung */
+.fa-earth-americas {
+  font-size: 1.5em;
+}
+
+/* Đảm bảo rằng các phần tử con được sắp xếp dọc đều nhau */
+.company-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; /* Đảm bảo chiều cao của cột */
+  align-items: flex-start; /* Căn chỉnh các phần tử con theo chiều dọc, căn lề trái */
+}
+
+/* Đặt kiểu chữ và căn chỉnh cho phần văn bản */
+.company-info,
+.address,
+.phone,
+.app {
+  flex: 1; /* Đảm bảo mỗi phần tử con chiếm không gian bằng nhau */
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding: 10px; /* Khoảng cách giữa các phần tử */
+  width: 100%; /* Đảm bảo các phần tử con chiếm toàn bộ chiều rộng của cột */
+}
+
+/* Đặt kiểu chữ cho phần văn bản */
+.company-info {
+  font-family: Arial, sans-serif;
+  font-weight: bold; /* Đảm bảo chữ in đậm */
+}
+
+/* Căn chỉnh biểu tượng và văn bản trong các phần tử con */
+.address i,
+.phone i,
+.app i {
+  margin-right: 10px; /* Khoảng cách giữa biểu tượng và văn bản */
+}
+
+/* Đảm bảo các phần tử con của .app được căn chỉnh ngang và cách nhau */
+.app i.ic {
+  margin-right: 10px; /* Khoảng cách giữa các biểu tượng trong .app */
+}
+
+.ic {
+  margin-left: 15px;
+}
+
+.app i {
+  font-size: 25px;
+}
+
+/* cột 2 của footer */
+.company-section2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align items to the left */
+  text-align: left; /* Căn chỉnh văn bản về bên trái */
+  width: 100%; /* Đảm bảo cột chiếm toàn bộ chiều rộng */
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Đảm bảo rằng các phần tử trong flex-container chiếm toàn bộ chiều rộng */
+  font-family: "Fira Sans", sans-serif;
+}
+
+.company-info,
+.us,
+.price,
+.question,
+.error,
+.map {
+  margin-bottom: 10px; /* Khoảng cách giữa các dòng chữ */
+  font-size: 16px; /* Kích thước chữ đồng nhất */
+}
+.us:hover,
+.price:hover,
+.question:hover,
+.error:hover,
+.map:hover {
+  color: #555;
+}
+
+/* cột 3 của footer */
+/* Adjust alignment for the footer columns */
+.company-section3,
+.company-section4 {
+  margin-top: 8px; /* Adjust this value to align the sections horizontally */
+}
+
+/* Room features title */
+.room-features-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Adjust section padding to ensure proper alignment */
+.company-section,
+.company-section2,
+.company-section3,
+.company-section4 {
+  padding-top: 20px; /* Ensures consistent top padding */
+}
+
+/* Retain existing styles and layout */
+.text-center {
+  font-weight: bold;
+}
+
+.fa-earth-americas {
+  font-size: 1.5em;
+}
+
+.company-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  align-items: flex-start;
+}
+
+.company-info,
+.address,
+.phone,
+.app {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding: 10px;
+  width: 100%;
+}
+
+.company-info {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+
+.address i,
+.phone i,
+.app i {
+  margin-right: 10px;
+}
+
+.app i.ic {
+  margin-right: 10px;
+}
+
+.ic {
+  margin-left: 15px;
+}
+
+.app i {
+  font-size: 25px;
+}
+
+.company-section2,
+.company-section3,
+.company-section4 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+}
+
+.flex-container,
+.flex-container3 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: "Fira Sans", sans-serif;
+}
+
+.company-info,
+.us,
+.price,
+.question,
+.error,
+.map {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.us:hover,
+.price:hover,
+.question:hover,
+.error:hover,
+.map:hover,
+.us3:hover,
+.price3:hover,
+.question3:hover,
+.error3:hover,
+.map3:hover {
+  color: #555;
+}
+
+.us3,
+.price3,
+.question3,
+.error3,
+.map3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.company-info3 {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.company-info4 {
+  margin-top: 0%;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+
+.email {
+  display: flex;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.email input[type="email"] {
+  width: calc(100% - 55px);
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  color: #000;
+  transition: background-color 0.3s;
+}
+
+.email button.subscribe-button {
+  background-color: red;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s;
+  font-size: 1.5em;
+  width: 45px;
+  height: 45px;
+  border-radius: 10%;
+  margin-left: 10px;
+}
+
+.email button.subscribe-button .fa-regular {
+  color: inherit;
+  margin-left: 8px;
+}
+
+.email input[type="email"]:hover {
+  background-color: #d3d3d3;
+}
+
+.email button.subscribe-button:hover {
+  background-color: red;
+  color: white;
+}
+
+/* Login ************************************************************************************************************ */
+
+.conlogin {
+  border: 1px solid #ccc; /* Màu đen nhạt */
+  border-radius: 10px; /* Tùy chọn, để góc viền bo tròn */
+  width: 500px;
+}
+.input-group-text {
+  background-color: white; /* Đặt nền trắng cho biểu tượng */
+  border-right: 0; /* Loại bỏ viền bên phải */
+}
+.form-control {
+  border-left: 0; /* Loại bỏ viền bên trái của ô input */
+}
+.input-group:focus-within {
+  border: 2px solid #0e0e0e; /* Viền đậm hơn khi bấm vào */
+  border-radius: 5px;
+}
+.form-control:focus {
+  border-color: transparent; /* Loại bỏ viền xanh khi focus */
+  box-shadow: none; /* Loại bỏ viền xanh khi focus */
+}
+
+/* hiện thị phòng nhà ************************************************************************************************** */
+.container-room {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.full-height {
+  height: 100vh; /* Chiều cao toàn màn hình */
+}
+/* phần video và ảnh */
+.carousel-item {
+  transition: transform 1s ease-in-out;
+}
+.carousel-item iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* phía thông tin chủ nhà */
+.custom-card {
+  margin: 15px; /* Cách lề và phía trên 5px */
+  border-radius: 10px; /* Bo tròn 4 góc 5px */
+  padding: 5px; /* Điều chỉnh padding cho nhỏ lại */
+}
+
+.card-body .btn {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #cccccc; /* Viền màu xám nhạt */
+  transition: background-color 0.3s; /* Chuyển màu mượt mà */
+}
+
+.card-body .btn:hover {
+  background-color: #e8e8e8; /* Màu xám nhạt khi di chuột vào */
+  border-color: #cccccc; /* Giữ nguyên viền màu xám nhạt */
+}
+
+.card-body .btn:focus {
+  outline: none; /* Bỏ viền xanh khi nhấn */
+  box-shadow: none; /* Đảm bảo không có bóng xanh */
+}
+
+/* Phần CSS tùy chỉnh cho nút có màu nền #009BA1 */
+.custom-btn {
+  background-color: #009ba1; /* Màu nền ban đầu */
+  color: white; /* Màu chữ */
+  transition: background-color 0.3s ease; /* Hiệu ứng mượt mà khi thay đổi màu */
+  border: none; /* Loại bỏ viền mặc định */
+  border-radius: 10px; /* Bo tròn 4 góc 10px cho đồng bộ */
+}
+
+.custom-btn:hover,
+.custom-btn:focus {
+  background-color: #00ced1 !important; /* Màu xanh sáng hơn khi di chuột hoặc nhấn vào */
+  outline: none; /* Loại bỏ viền xanh khi nhấn */
+  box-shadow: none; /* Đảm bảo không có bóng xanh */
+}
+/* THoong tin của nhà trọ */
+.room-info-card {
+  width: 100%; /* Chiếm toàn bộ chiều ngang của thẻ chứa */
+  background-color: #ffff;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  padding: 20px;
+  box-sizing: border-box; /* Đảm bảo padding không làm tăng chiều rộng */
+}
+
+.room-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #e13427; /* Màu đỏ cho tiêu đề phòng */
+}
+
+.room-address {
+  font-size: 16px; /* Font 14px cho địa chỉ */
+  margin-bottom: 20px;
+}
+
+.room-details {
+  display: flex;
+  align-items: center;
+  font-weight: bold; /* In đậm tất cả chữ */
+  margin-bottom: 20px;
+}
+.details-text {
+  font-size: 22px;
+  font-weight: 500;
+}
+/* 3 cái icon */
+.details-icons {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  margin-left: 100px;
+  margin-top: -5px;
+}
+.icon-wrapper {
+  position: relative;
+  margin-left: 15px;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.icon-wrapper:hover,
+.icon-wrapper:focus-within {
+  background-color: #f0f0f0; /* Màu xám nhạt bao quanh icon */
+}
+
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+  width: max-content;
+  background-color: #333333;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 5px;
+  position: absolute;
+  bottom: 125%; /* Hiển thị bảng phía trên icon */
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.3s ease;
+  white-space: nowrap; /* Ngăn cách từ ngắt dòng */
+  z-index: 1;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%; /* Mũi tên chỉ xuống dưới */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333333 transparent transparent transparent;
+}
+
+.icon-wrapper:hover .tooltip,
+.icon-wrapper:focus-within .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.room-description {
+  font-size: 22px; /* Font 21px cho tiêu đề mô tả */
+  margin-bottom: 20px;
+}
+
+.room-description-details {
+  font-size: 16px; /* Font 16px cho chi tiết mô tả */
+  line-height: 35px;
+}
+
+/* phần đặc điểm phòng */
+.room-features-title {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.container-dac-diem {
+  margin-top: 20px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  font-weight: bold; /* In đậm tất cả chữ */
+  margin-bottom: 10px;
+}
+
+.feature-item i {
+  color: #11a1ee; /* Màu của icon */
+  margin-right: 10px; /* Khoảng cách giữa icon và văn bản */
+  min-width: 24px; /* Đảm bảo các icon có cùng chiều rộng */
+  text-align: center; /* Canh giữa các icon */
+}
+
+.feature-text {
+  flex: 1; /* Đảm bảo văn bản chiếm hết chiều ngang còn lại */
+}
+
+hr {
+  border-top: 1px solid #dee2e6; /* Thanh xám nhạt hơn */
+  margin: 5px 0; /* Khoảng cách trên dưới của thanh xám */
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px; /* Cách cột 1 với cột 2 một khoảng */
+}
+
+.col:last-child {
+  margin-right: 0; /* Xóa margin cho cột cuối cùng */
+}
+
+/* dòng 6: đặc điểm tin  */
+.room-news-title {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  margin-top: 25px;
+}
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.custom-table th,
+.custom-table td {
+  padding: 10px;
+  text-align: left;
+}
+.custom-table th {
+  font-weight: normal; /* Change text weight to normal */
+}
+
+.custom-table tr:nth-child(odd) {
+  background-color: white;
+}
+.custom-table tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+.custom-col-1 {
+  width: 25%;
+}
+.custom-col-2 {
+  width: 75%;
+}
+/* map */
+.map-container {
+  width: 100%;
+  max-width: 900px;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  position: relative;
+}
+
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.map-title {
+  font-weight: bold;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.map-address {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+/* Hiện thị tin đặc biệt phía bên phải  */
+.news-table {
+    margin: 15px; /* Cách đều 4 phía */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+}
+.news-row {
+    padding: 10px 0; /* Cách đều giữa các hàng */
+    
+    position: relative;
+}
+.news-row:not(:last-child)::after {
+    content: "";
+    display: block;
+    width: 80%; /* Chiều rộng của vạch kẻ ngang */
+    height: 1px;
+    background-color: #ddd;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Căn giữa vạch kẻ ngang */
+}
+.news-image {
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.news-content {
+    padding-left: 15px;
+    
+}
+.news-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    line-height: 18px;
+    font-weight: 500;
+}
+.news-info-time {
+    color: #777;
+    font-size: 13px;
+}
+.news-info-money {
+    color:#16c784;
+    font-size: 14px;
+    font-weight: bold;
+    font-weight: 700;
+    
+}
+
+.news-info {
+    display: flex;
+    justify-content: space-between;
+}
+/* hiện thi khu vực quận */
+.ward-table {
+    margin: 15px; /* Cách đều 4 phía */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+}
+.ward-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0; /* Cách đều giữa các hàng */
+    border-bottom: 1px solid #ddd; /* Vạch kẻ dưới mỗi hàng */
+    transition: background-color 0.3s, color 0.3s;
+}
+.ward-row:last-child {
+    border-bottom: none; /* Xóa vạch kẻ cho hàng cuối cùng */
+}
+.ward-icon {
+    margin-right: 10px; /* Khoảng cách giữa icon và tên phường */
+    font-size: 12px;
+}
+.ward-name {
+    flex-grow: 1; /* Tên phường sẽ chiếm không gian còn lại */
+}
+.ward-count {
+    color: #777; /* Màu sắc của số lượng */
+}
+.ward-row:hover {
+    background-color: #f8f9fa; /* Thay đổi màu nền khi di chuột */
+    color: #adb5bd; /* Thay đổi màu chữ khi di chuột */
+}
+/* Hiệu ứng khi nhấn vào hàng phường */
+.ward-row:active {
+    background-color: #e2e6ea; /* Thay đổi màu nền khi nhấn */
+    color: #adb5bd; /* Thay đổi màu chữ khi nhấn */
+}
+
