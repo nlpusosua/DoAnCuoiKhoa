@@ -1102,3 +1102,34 @@ hr {
     color: #adb5bd; /* Thay đổi màu chữ khi nhấn */
 }
 
+/* chỗ slider của news */
+.carousel-control-prev2,
+.carousel-control-next2 {
+  width: 30px; /* Chiều rộng cố định của nút */
+  height: 30px; /* Chiều cao cố định của nút */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px; 
+  margin: 0; /* Đảm bảo nút sát nhau */
+  padding: 0; /* Xóa khoảng cách bên trong nút */
+  background-color: white;
+  border-color: #CCCCCC;
+}
+
+.carousel-control-prev2 i,
+.carousel-control-next2 i {
+  font-size: 16px; /* Kích thước của biểu tượng */
+  color:#2C2C2C; /* Màu nền tối với độ mờ */
+}
+
+h4 {
+  margin: 0; /* Xóa khoảng cách để không chèn vào nút điều hướng */
+  display: inline-block; /* Đảm bảo tiêu đề nằm cùng dòng với các nút */
+  margin-right: auto; /* Đẩy tiêu đề về bên trái */
+}
+
+.d-flex.align-items-center .carousel-control-prev2,
+.d-flex.align-items-center .carousel-control-next2 {
+  margin: 0 5px; /* Đảm bảo các nút sát nhau hơn */
+}
