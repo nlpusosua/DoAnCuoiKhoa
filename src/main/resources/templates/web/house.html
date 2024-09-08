@@ -73,7 +73,7 @@
         <button class="post-button">Đăng tin</button>
       </div>
     </nav>
-    <!-- khung hiện thị phòng -->
+    <!-- khung hiện thị phòng bên trái-->
     <div class="container-room mx-auto d-flex height: 100vh">
       <div class="left-section flex-grow-1" style="flex: 0 0 75%">
         <!-- thanh hiện thị bên dưới thể hiện có bao nhiêu cái ảnh/video -->
@@ -313,8 +313,7 @@
         <!-- Tin dành cho bạn-->
         <div
           id="sliderNews"
-          class="carousel slide mt-3 mb-3"
-          data-bs-ride="carousel"
+          class="carousel slide mt-5 mb-4"
           data-bs-wrap="false"
         >
           <!-- Tiêu đề và nút điều hướng trên cùng dòng -->
@@ -323,7 +322,7 @@
             <!-- Nút điều hướng trái/phải trong cùng một div -->
             <div class="d-flex align-items-center">
               <button
-                class="carousel-control-prev2 me-1 "
+                class="carousel-control-prev2 me-1"
                 type="button"
                 data-bs-target="#sliderNews"
                 data-bs-slide="prev"
@@ -336,67 +335,108 @@
                 data-bs-target="#sliderNews"
                 data-bs-slide="next"
               >
-                <i class="fa-solid fa-chevron-right"></i>                
+                <i class="fa-solid fa-chevron-right"></i>
               </button>
             </div>
           </div>
+
           <div class="carousel-inner">
             <div class="carousel-item active">
               <div class="row d-flex justify-content-center">
                 <div class="col-md-3">
-                  <div class="item">Your Content 1</div>
+
+                  <div class="content-box">
+                    <div class="item-news-foru">
+                        <div class="item-image-news-foru">
+                            <img src="/binhduong.jpg" alt="Room Image" />
+                        </div>
+                        <div class="item-details-news-foru">
+                            <div class="room-title-news-foru">Room Titl23 Main Street, Distri23 Main Street, Distrie</div>
+                            <div class="room-price-news-foru">2 tr - 100 m2</div>
+                            <div class="room-address-news-foru"> <i class="fa-solid fa-location-dot"></i> District 1, HCM</div>
+                            <div class="item-footer-news-foru">
+                              <div class="post-time-news-foru">5 days ago</div>
+                              <div class="icon-box-news-foru">
+                                <i class="fa-regular fa-heart"></i>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 </div>
                 <div class="col-md-3">
-                  <div class="item">Your Content 2</div>
+                  <div class="content-box">
+                    <div class="item">Your Content 2</div>
+                  </div>
                 </div>
                 <div class="col-md-3">
-                  <div class="item">Your Content 3</div>
+                  <div class="content-box">
+                    <div class="item">Your Content 3</div>
+                  </div>
                 </div>
                 <div class="col-md-3">
-                  <div class="item">Your Content 4</div>
+                  <div class="content-box">
+                    <div class="item">Your Content 4</div>
+                  </div>
                 </div>
               </div>
             </div>
+
             <div class="carousel-item">
               <div class="row d-flex justify-content-center">
                 <div class="col-md-3">
-                  <div class="item">Your Content 5</div>
+                  <div class="content-box">
+                    <div class="item">Your Content 5</div>
+                  </div>
                 </div>
                 <div class="col-md-3">
-                  <div class="item">Your Content 6</div>
+                  <div class="content-box">
+                    <div class="item">Your Content 6</div>
+                  </div>
                 </div>
                 <div class="col-md-3">
-                  <div class="item">Your Content 7</div>
+                  <div class="content-box">
+                    <div class="item">Your Content 7</div>
+                  </div>
                 </div>
                 <div class="col-md-3">
-                  <div class="item">Your Content 8</div>
+                  <div class="content-box">
+                    <div class="item">Your Content 8</div>
+                  </div>
                 </div>
               </div>
             </div>
+
             <div class="carousel-item">
               <div class="row d-flex justify-content-center">
                 <div class="col-md-3">
-                  <div class="item">Your Content 9</div>
+                  <div class="content-box">
+                    <div class="item">Your Content 9</div>
+                  </div>
                 </div>
                 <div class="col-md-3">
-                  <div class="item">Your Content 10</div>
+                  <div class="content-box">
+                    <div class="item">Your Content 10</div>
+                  </div>
                 </div>
                 <div class="col-md-3">
-                  <div class="item">Your Content 11</div>
+                  <div class="content-box">
+                    <div class="item">Your Content 11</div>
+                  </div>
                 </div>
                 <div class="col-md-3">
-                  <div class="item">Your Content 12</div>
+                  <div class="content-box">
+                    <div class="item">Your Content 12</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-
-
       </div>
 
-      <!-- khu hiện thị thông tin của chủ phòng -->
+      <!-- khu hiện thị thông tin của chủ phòng bên phải-->
       <div class="right-section" style="flex: 0 0 25%">
         <!-- ô thông tin liên hệ của người chủ -->
         <div class="card custom-card">
@@ -778,6 +818,7 @@
         </div>
       </div>
     </footer>
+
     <script src="/lib/jquery.min.js"></script>
     <script src="/lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="/js/slide-news.js"></script>
