@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +9,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/web-assets/css/style.css">
 </head>
 <body>
     <!-- header  -->
     <nav class="navbar navbar-expand-lg bg-dark">
         <a class="navbar-brand" href="#">
-            <img src="/logo.png" alt="logo" class="logo">
+            <img src="/web-assets/image/logo.png" alt="logo" class="logo">
         </a>
         <!-- bên trái -->
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -64,27 +64,27 @@
                 <div class="title1">Top tỉnh thành nổi bật</div>
                 <div class="highlighted-cities">
                     <div class="city">
-                        <img src="/hanoi.jpg" alt="Hà Nội">
+                        <img src="/web-assets/image/hanoi.jpg" alt="Hà Nội">
                         <div class="city-name">Hà Nội</div>
                     </div>
                     <div class="city">
-                        <img src="/hcm.webp" alt="Hồ Chí Minh">
+                        <img src="/web-assets/image/hcm.webp" alt="Hồ Chí Minh">
                         <div class="city-name">Hồ Chí Minh</div>
                     </div>
                     <div class="city">
-                        <img src="/danang.jpg" alt="Đà Nẵng">
+                        <img src="/web-assets/image/danang.jpg" alt="Đà Nẵng">
                         <div class="city-name">Đà Nẵng</div>
                     </div>
                     <div class="city">
-                        <img src="/binhduong.jpg" alt="Bình Dương">
+                        <img src="/web-assets/image/binhduong.jpg" alt="Bình Dương">
                         <div class="city-name">Bình Dương</div>
                     </div>
                     <div class="city">
-                        <img src="/dongnai.jpg" alt="Đồng Nai">
+                        <img src="/web-assets/image/dongnai.jpg" alt="Đồng Nai">
                         <div class="city-name">Đồng Nai</div>
                     </div>
                     <div class="city">
-                        <img src="/khanhhoa.jpeg" alt="Khánh Hòa">
+                        <img src="/web-assets/image/khanhhoa.jpeg" alt="Khánh Hòa">
                         <div class="city-name">Khánh Hòa</div>
                     </div>
                 </div>
@@ -205,12 +205,27 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-3 mb-4">
                 <div class="room-item">
+<!--                    <a th:href="@{/phim/{id}/{slug}(id=${room.id}, slug=${room.slug})}">-->
                     <div class="room-poster rounded overflow-hidden">
-                        <img class="w-100 h-100" src="/hanoi.jpg" alt="">
+                        <img class="w-100 h-100" src="/web-assets/image/hanoi.jpg" alt="Room Image">
                     </div>
-                    <p class="mt-2">Hà Nội</p>
+                    <div class="item-details-news-foru-index mt-2 ml-2 mr-2 mb-2">
+                        <div class="room-title-news-foru-index" >Room Title ,23 Main Street,23 Main Streetroom-title-news-foruroom-title-news-foru</div>
+                        <div class="room-price-news-foru-index" >2 tr - 100 m2</div>
+                        <div class="room-address-news-foru-index"> 
+                            <i class="fa-solid fa-location-dot" ></i> District 1, HCM
+                        </div>
+                        <div class="item-footer-news-foru-index mt-4">
+                            <div class="post-time-news-foru-index" >Đăng 5 ngày trước</div>
+                            <div class="icon-box-news-foru-index">
+                                <i class="fa-regular fa-heart "></i>
+                            </div>
+                        </div>
+                    </div>
+<!--                    </a>-->
                 </div>
             </div>
+            
             <div class="col-12 col-md-3 mb-4">
                 <div class="room-item">
                     <div class="room-poster rounded overflow-hidden">
@@ -401,7 +416,7 @@
         <div class="container">
             <div class="row align-items-center mb-4">
                 <div class="col-md-3 text-center text-md-left">
-                    <img src="/logo.png" alt="logo" class="logo">
+                    <img src="/web-assets/image/logo.png" alt="logo" class="logo">
                 </div>
                 <div class="col-md-3 hotline text-center text-md-left">
                     <i class="fa-solid fa-phone-volume"></i>
@@ -468,7 +483,7 @@
     </footer>
     
     
-    <script src="/js/scripts.js"></script>
+    <script src="/web-assets/js/scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

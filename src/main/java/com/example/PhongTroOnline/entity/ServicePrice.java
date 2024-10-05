@@ -17,7 +17,6 @@ public class ServicePrice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     PriceType type;

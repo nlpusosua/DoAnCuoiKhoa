@@ -333,30 +333,40 @@ body {
 
 /* ô hiện thị (body) ************************************************************************************************************ */
 .container {
-  max-width: 1600px; /* Đặt kích thước tối đa cho container */
+  max-width: 1200px; /* Đặt kích thước tối đa cho container */
   margin: auto;
 }
 
 .room-item {
-  width: 380px; /* Đặt kích thước chiều rộng cho mỗi box */
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; /* Áp dụng shadow */
-  background-color: #fff; /* Đặt màu nền cho room-item */
-  border-radius: 8px; /* Tùy chọn: làm cho các góc viền bo tròn */
-  overflow: hidden; /* Đảm bảo ảnh không tràn ra ngoài phần tử */
+  display: flex;
+  flex-direction: column;
+  width: 270px;
+  height: 320px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  background-color: #fff;
+  border: 1px solid #CCCCCC;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .room-poster {
-  padding: 0; /* Loại bỏ padding để ảnh tràn viền */
-  margin: -10px -10px 0 -10px; /* Đảm bảo ảnh tràn ra ngoài shadow */
-  overflow: hidden; /* Ẩn phần tràn của ảnh */
+  flex: 45%; /* Chiếm 40% chiều cao của khung */
 }
 
 .room-poster img {
-  display: block;
   width: 100%;
-  height: auto;
-  object-fit: cover; /* Đảm bảo ảnh bao phủ toàn bộ phần tử */
+  height: 100%;
+  object-fit: cover;
 }
+
+.item-details-news-foru-index {
+  flex: 55%; /* Chiếm 60% chiều cao còn lại */
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 
 .news-item {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; /* Áp dụng shadow */
@@ -1236,5 +1246,74 @@ h4 {
   font-size: 16px; /* Điều chỉnh kích thước biểu tượng nếu cần */
   margin: 0; /* Đảm bảo không có khoảng cách thêm xung quanh biểu tượng */
 }
+
+/*  giống phần tin dành cho bạn nhưng ở index  */
+.item-details-news-foru-index {
+  display: inline;
+}
+
+.room-title-news-foru-index,
+.room-price-news-foru-index,
+.room-address-news-foru-index {
+  margin-bottom: 7px; /* Điều chỉnh khoảng cách giữa các phần tử */
+}
+
+.room-title-news-foru-index {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.2em;
+  max-height: 2.4em;
+  /* giấu chữ nếu dài quá 2 dòng */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: normal;
+}
+
+.room-price-news-foru-index {
+  font-size: 18px;
+  font-weight: bold;
+  color: red;
+}
+
+.room-address-news-foru-index {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.room-address-news-foru-index i {
+  margin-right: 8px; /* Khoảng cách giữa icon và text */
+}
+.item-footer-news-foru-index {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.post-time-news-foru-index {
+  font-size: 12px;
+  line-height: 16px;
+  color: #888888;
+}
+.icon-box-news-foru-index {
+  width: 35px;
+  height: 35px;
+  border: 1px solid #CCCCCC;
+  border-radius: 5px;
+  display: flex; /* Sử dụng flexbox để căn giữa */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  padding: 0; /* Loại bỏ padding nếu có */
+}
+
+.icon-box-news-foru-index i {
+  font-size: 16px;
+  line-height: 1; /* Đảm bảo khoảng cách dòng không làm ảnh hưởng */
+  margin: 0; /* Đảm bảo không có khoảng cách ngoài */
+}
+
 
 

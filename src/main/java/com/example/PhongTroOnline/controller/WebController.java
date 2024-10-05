@@ -13,10 +13,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WebController {
     private final RoomService roomService;
+
+
     @GetMapping("/")
     public String getHomePage(Model model) {
-        List<Room> listRoom = roomService.getRoomByName("name");
+        List<Room> listRoom = roomService.getRoom("name",1,"123");
+
         model.addAttribute("listRoom", listRoom);
         return "web/index";
+    }
+
+    @GetMapping("/house")
+    public String getHousePage(Model model){
+        return "web/house";
     }
 }

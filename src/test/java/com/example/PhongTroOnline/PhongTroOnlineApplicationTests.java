@@ -51,51 +51,124 @@ class PhongTroOnlineApplicationTests {
 
 	@Test
 	void save_categories() {
-		Faker faker = new Faker();
+		Faker faker = new Faker(new Locale("vi")); // Sử dụng locale Tiếng Việt cho faker
 		Slugify slugify = Slugify.builder().build();
+
+		// Các danh mục chính
+		String[] categories = {
+				"Cho thuê phòng trọ",
+				"Nhà cho thuê",
+				"Cho thuê căn hộ",
+				"Cho thuê mặt bằng",
+				"Tìm người ở ghép"
+		};
+
+		// Các quận/huyện (ví dụ ở Hà Nội)
+		String[] districts = {
+				"Quận Hà Đông",
+				"Quận Thanh Xuân",
+				"Quận Cầu Giấy",
+				"Quận Hoàng Mai",
+				"Quận Đống Đa"
+		};
+
 		for (int i = 0; i < 100; i++) {
-			String name = faker.commerce().department();
-			String title = faker.book().title();
-			String description = Optional.ofNullable(faker.lorem().paragraph()).orElse("Default description");
+			// Lựa chọn ngẫu nhiên danh mục và quận/huyện
+			String categoryType = categories[faker.random().nextInt(categories.length)];
+			String district = districts[faker.random().nextInt(districts.length)];
+
+			// Tạo tên và mô tả cho category
+			String name = categoryType + " tại " + district;
+			String title = name;  // Bỏ số phòng khỏi title
+			String description = "Thông tin chi tiết về " + name + ". " +
+					Optional.ofNullable(faker.lorem().paragraph()).orElse("Mô tả mặc định");
+
+			// Tạo đối tượng Category
 			Category category = Category.builder()
 					.name(name)
 					.slug(slugify.slugify(name))
 					.title(title)
 					.description(description)
 					.build();
+
 			categoryRepository.save(category);
 		}
 	}
+
+
 	@Test
 	void save_wards() {
-		Faker faker = new Faker();
+		Faker faker = new Faker(new Locale("vi")); // Sử dụng locale tiếng Việt
+		// Danh sách tên phường phổ biến tại Hà Nội
+		String[] wards = {
+				"Phường Cống Vị", "Phường Điện Biên", "Phường Hàng Bài",
+				"Phường Hàng Bông", "Phường Hàng Buồm", "Phường Hàng Đào",
+				"Phường Hàng Gai", "Phường Hàng Mã", "Phường Hàng Trống",
+				"Phường Khâm Thiên", "Phường Kim Liên", "Phường Láng Hạ",
+				"Phường Láng Thượng", "Phường Ngọc Hà", "Phường Phạm Đình Hổ",
+				"Phường Phúc Xá", "Phường Quán Thánh", "Phường Thanh Xuân Bắc",
+				"Phường Trung Tự", "Phường Trúc Bạch", "Phường Văn Chương",
+				"Phường Xuân La", "Phường Yên Hòa", "Phường Định Công",
+				"Phường Khương Mai", "Phường Khương Trung", "Phường Phương Liệt",
+				"Phường Ngã Tư Sở", "Phường Bạch Đằng", "Phường Bùi Thị Xuân"
+				// Thêm các tên phường khác nếu cần
+		};
+
 		for (int i = 0; i < 100; i++) {
-			String name = faker.address().streetName(); // Fake tên phường
+			// Chọn ngẫu nhiên tên phường từ danh sách
+			String name = wards[faker.random().nextInt(wards.length)];
+
+			// Tạo đối tượng Ward
 			Ward ward = new Ward();
 			ward.setName(name);
 			wardRepository.save(ward);
 		}
 	}
+
 	@Test
 	void save_districts() {
-		Faker faker = new Faker();
-		for (int i = 0; i < 100; i++) {
-			String name = faker.address().streetName(); // Fake tên quận
+		String[] hanoiDistricts = {
+				"Ba Đình", "Hoàn Kiếm", "Tây Hồ", "Long Biên", "Cầu Giấy",
+				"Đống Đa", "Hai Bà Trưng", "Hoàng Mai", "Thanh Xuân",
+				"Nam Từ Liêm", "Bắc Từ Liêm", "Hà Đông", "Sơn Tây",
+				"Ba Vì", "Chương Mỹ", "Đan Phượng", "Đông Anh", "Gia Lâm",
+				"Hoài Đức", "Mê Linh", "Mỹ Đức", "Phú Xuyên", "Phúc Thọ",
+				"Quốc Oai", "Sóc Sơn", "Thạch Thất", "Thanh Oai", "Thanh Trì",
+				"Thường Tín", "Ứng Hòa"
+		};
+
+		for (String districtName : hanoiDistricts) {
 			District district = new District();
-			district.setName(name);
+			district.setName(districtName);
 			districtRepository.save(district);
 		}
 	}
+
 	@Test
 	void save_provinces() {
-		Faker faker = new Faker();
-		for (int i = 0; i < 100; i++) {
-			String name = faker.address().cityName(); // Fake tên tỉnh/thành phố
+		List<String> vietnamProvinces = Arrays.asList(
+				"An Giang", "Bà Rịa - Vũng Tàu", "Bạc Liêu", "Bắc Giang", "Bắc Kạn",
+				"Bắc Ninh", "Bến Tre", "Bình Định", "Bình Dương", "Bình Phước",
+				"Bình Thuận", "Cà Mau", "Cần Thơ", "Cao Bằng", "Đà Nẵng",
+				"Đắk Lắk", "Đắk Nông", "Điện Biên", "Đồng Nai", "Đồng Tháp",
+				"Gia Lai", "Hà Giang", "Hà Nam", "Hà Nội", "Hà Tĩnh",
+				"Hải Dương", "Hải Phòng", "Hậu Giang", "Hòa Bình", "Hưng Yên",
+				"Khánh Hòa", "Kiên Giang", "Kon Tum", "Lai Châu", "Lâm Đồng",
+				"Lạng Sơn", "Lào Cai", "Long An", "Nam Định", "Nghệ An",
+				"Ninh Bình", "Ninh Thuận", "Phú Thọ", "Phú Yên", "Quảng Bình",
+				"Quảng Nam", "Quảng Ngãi", "Quảng Ninh", "Quảng Trị", "Sóc Trăng",
+				"Sơn La", "Tây Ninh", "Thái Bình", "Thái Nguyên", "Thanh Hóa",
+				"Thừa Thiên Huế", "Tiền Giang", "TP Hồ Chí Minh", "Trà Vinh", "Tuyên Quang",
+				"Vĩnh Long", "Vĩnh Phúc", "Yên Bái"
+		);
+
+		for (String name : vietnamProvinces) {
 			Province province = new Province();
 			province.setName(name);
 			provinceRepository.save(province);
 		}
 	}
+
 	@Test
 	void save_image_rooms() {
 		Faker faker = new Faker();
@@ -140,12 +213,36 @@ class PhongTroOnlineApplicationTests {
 	void save_services() {
 		Faker faker = new Faker();
 
-		for (int i = 0; i < 50; i++) {
-			String name = faker.commerce().productName();
-			String description = faker.lorem().sentence();
-			String titleColor = faker.color().hex();  // Mã màu hex
-			boolean autoApprove = faker.bool().bool();
-			boolean showPhone = faker.bool().bool();
+		String[] names = {
+				"Tin VIP nổi bật",
+				"Tin VIP 1",
+				"Tin VIP 2",
+				"Tin VIP 3",
+				"Tin thường"
+		};
+
+		String[] titleColors = {
+				"TIÊU ĐỀ MÀU ĐỎ, IN HOA",
+				"TIÊU ĐỀ MÀU HỒNG, IN HOA",
+				"TIÊU ĐỀ MÀU CAM, IN HOA",
+				"TIÊU ĐỀ MÀU XANH, IN HOA",
+				"Tiêu đề màu mặc định, viết thường"
+		};
+
+		String[] descriptions = {
+				"Tin VIP nổi bật: TIÊU ĐỀ IN HOA MÀU ĐỎ, gắn biểu tượng 5 ngôi sao màu vàng và hiển thị to và nhiều hình hơn các tin khác. Nằm trên tất cả các tin khác. ",
+				"Tin VIP 1: TIÊU ĐỀ IN HOA MÀU HỒNG, gắn biểu tượng 4 ngôi sao màu vàng ở tiêu đề tin đăng. Hiển thị sau tin VIP nổi bật, Tin VIP 1 và trên các tin khác.",
+				"Tin VIP 2: TIÊU ĐỀ IN HOA MÀU CAM, gắn biểu tượng 3 ngôi sao màu vàng ở tiêu đề tin đăng. Hiển thị sau tin VIP nổi bật, Tin VIP 1, Tin VIP 2 và trên các tin khác.",
+				"Tin VIP 3: TIÊU ĐỀ IN HOA MÀU XANH, gắn biểu tượng 2 ngôi sao màu vàng ở tiêu đề tin đăng. Hiển thị sau tin VIP nổi bật, Tin VIP 1, Tin VIP 2, Tin VIP 3 và trên các tin khác.",
+				"Tin thường: Tiêu đề màu mặc định, viết thường. Hiển thị sau các tin VIP."
+		};
+
+		for (int i = 0; i < names.length; i++) {
+			String name = names[i];
+			String description = descriptions[i];
+			String titleColor = titleColors[i];
+			boolean autoApprove = !name.equals("Tin thường");
+			boolean showPhone = name.equals("Tin VIP nổi bật");
 
 			Service service = Service.builder()
 					.name(name)
@@ -356,7 +453,7 @@ class PhongTroOnlineApplicationTests {
 
 	@Test
 	void test_pagination() {
-		PageRequest pageRequest = PageRequest.of(0, 10, Sort.by("id").descending());
+		PageRequest pageRequest = PageRequest.of(0, 8, Sort.by("id").descending());
 		Page<Room> page = roomRepository.findByStatus(true, pageRequest);
 
 		System.out.println("Total pages: " + page.getTotalPages());

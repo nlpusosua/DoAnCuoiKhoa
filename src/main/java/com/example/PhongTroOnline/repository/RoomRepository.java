@@ -11,6 +11,8 @@ import java.util.List;
 
 public interface RoomRepository extends JpaRepository<Room, Integer> {
     boolean existsBySlug(String slug);
-    List<Room> findByTitle(String title);
-    Page<Room> findByStatus(Boolean status, Pageable pageable);
+//    Page<Room> findByTitle(String title, Pageable pageable);
+    List<Room> findAllByTitleAndIdAndStreetDetail(String title, Integer id, String streetDetail);
+
+
 }
