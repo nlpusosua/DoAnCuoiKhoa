@@ -15,6 +15,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -47,7 +48,8 @@ class PhongTroOnlineApplicationTests {
 	private VideoRoomRepository videoRoomRepository;
 	@Autowired
 	private WardRepository wardRepository;
-
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	@Test
 	void save_categories() {
@@ -172,25 +174,43 @@ class PhongTroOnlineApplicationTests {
 	@Test
 	void save_image_rooms() {
 		Faker faker = new Faker();
+		List<Room> rooms = roomRepository.findAll(); // Lấy tất cả các Room từ database
 		for (int i = 0; i < 100; i++) {
 			String imgUrl = faker.internet().image(); // Fake URL của hình ảnh
 			ImageRoom imageRoom = new ImageRoom();
 			imageRoom.setImgUrl(imgUrl);
+
+			// Gán một Room ngẫu nhiên từ danh sách rooms cho ImageRoom
+			if (!rooms.isEmpty()) {
+				Room randomRoom = rooms.get(faker.random().nextInt(rooms.size()));
+				imageRoom.setRoom(randomRoom);
+			}
+
 			imageRoomRepository.save(imageRoom);
+			System.out.println("Saved ImageRoom with ID: " + imageRoom.getId() + ", Room ID: " + (imageRoom.getRoom() != null ? imageRoom.getRoom().getId() : "null"));
 		}
 	}
+
 	@Test
 	void save_video_rooms() {
 		Faker faker = new Faker();
+		List<Room> rooms = roomRepository.findAll(); // Lấy tất cả các Room từ database
 		for (int i = 0; i < 100; i++) {
 			String videoUrl = faker.internet().url(); // Fake URL của video
-
 			VideoRoom videoRoom = new VideoRoom();
 			videoRoom.setVideoUrl(videoUrl);
 
+			// Gán một Room ngẫu nhiên từ danh sách rooms cho VideoRoom
+			if (!rooms.isEmpty()) {
+				Room randomRoom = rooms.get(faker.random().nextInt(rooms.size()));
+				videoRoom.setRoom(randomRoom);
+			}
+
 			videoRoomRepository.save(videoRoom);
+			System.out.println("Saved VideoRoom with ID: " + videoRoom.getId() + ", Room ID: " + (videoRoom.getRoom() != null ? videoRoom.getRoom().getId() : "null"));
 		}
 	}
+
 	@Test
 	void save_users() {
 		Faker faker = new Faker();
@@ -341,7 +361,7 @@ class PhongTroOnlineApplicationTests {
 					.user(user)
 					.category(category)
 					.services(service)
-					.provinces(province)
+					.province(province)
 					.district(district)
 					.ward(ward)
 					.build();
@@ -349,6 +369,8 @@ class PhongTroOnlineApplicationTests {
 			roomRepository.save(room);
 		}
 	}
+
+
 	@Test
 	void save_news() {
 		Random random = new Random();
@@ -451,17 +473,24 @@ class PhongTroOnlineApplicationTests {
 		}
 	}
 
+//	@Test
+//	void test_pagination() {
+//		PageRequest pageRequest = PageRequest.of(0, 8, Sort.by("id").descending());
+//		Page<Room> page = roomRepository.findAllById(1, pageRequest);
+//
+//		System.out.println("Total pages: " + page.getTotalPages());
+//		System.out.println("Total elements: " + page.getTotalElements());
+//		page.getContent().forEach(m -> System.out.println(m.getId()));
+//	}
+
 	@Test
-	void test_pagination() {
-		PageRequest pageRequest = PageRequest.of(0, 8, Sort.by("id").descending());
-		Page<Room> page = roomRepository.findByStatus(true, pageRequest);
-
-		System.out.println("Total pages: " + page.getTotalPages());
-		System.out.println("Total elements: " + page.getTotalElements());
-		page.getContent().forEach(m -> System.out.println(m.getId()));
+	void update_password_user() {
+		List<User> users = userRepository.findAll();
+		for (User user : users) {
+			user.setPassword(passwordEncoder.encode("123"));
+			userRepository.save(user);
+		}
 	}
-
-
 
 
 

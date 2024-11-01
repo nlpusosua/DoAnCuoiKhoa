@@ -14,14 +14,14 @@
 <body>
     <!-- header  -->
     <nav class="navbar navbar-expand-lg bg-dark">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img src="/web-assets/image/logo.png" alt="logo" class="logo">
         </a>
         <!-- bên trái -->
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link text-white" href="#">Trang Chủ <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-white" href="/">Trang Chủ <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">Cho thuê phòng trọ</a>
@@ -49,7 +49,7 @@
                 <span class="tooltip">Danh sách tin đã lưu</span>
             </i></button>
             
-            <a class="nav-link text-white" href="#">Đăng nhập</a>
+            <a class="nav-link text-white" href="/login">Đăng nhập</a>
             <a class="nav-link text-white" href="#">Đăng ký</a>
             <button class="post-button">Đăng tin</button>
         </div>
@@ -203,89 +203,33 @@
             <a href="#">Xem thêm</a>
         </div>
         <div class="row justify-content-center">
-            <div class="col-12 col-md-3 mb-4">
-                <div class="room-item">
-<!--                    <a th:href="@{/phim/{id}/{slug}(id=${room.id}, slug=${room.slug})}">-->
+            <div class="col-12 col-md-3 mb-4" th:each="room : ${listRoom}">
+                <div class="room-item" >
+                    <a th:href="@{/room/{id}/{slug}(id=${room.id}, slug=${room.slug})}">
                     <div class="room-poster rounded overflow-hidden">
-                        <img class="w-100 h-100" src="/web-assets/image/hanoi.jpg" alt="Room Image">
+                        <img src="/web-assets/image/hanoi.jpg" alt="Room Image">
                     </div>
-                    <div class="item-details-news-foru-index mt-2 ml-2 mr-2 mb-2">
-                        <div class="room-title-news-foru-index" >Room Title ,23 Main Street,23 Main Streetroom-title-news-foruroom-title-news-foru</div>
-                        <div class="room-price-news-foru-index" >2 tr - 100 m2</div>
-                        <div class="room-address-news-foru-index"> 
-                            <i class="fa-solid fa-location-dot" ></i> District 1, HCM
+                    <div class="item-details-news-foru-index mt-1 ml-2 mr-2 mb-2">
+                        <div class="room-title-news-foru-index " th:text="${room.title}" >Room Title ,23 Main Street,23 Main Streetroom-title-news-foruroom-title-news-foru</div>
+                        <div class="room-price-news-foru-index " th:text="${room.price}" >2 tr - 100 m2</div>
+                        <div class="room-address-news-foru-index ">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span th:text=" ${room.district.name} + ', ' + ${room.province.name}"></span>
                         </div>
-                        <div class="item-footer-news-foru-index mt-4">
-                            <div class="post-time-news-foru-index" >Đăng 5 ngày trước</div>
+                        <div class="item-footer-news-foru-index  mt-3">
+                            <div class="post-time-news-foru-index"
+                                 th:text="${T(java.time.Duration).between(room.createdAt, T(java.time.LocalDateTime).now()).toDays()} + ' ngày trước'">
+                                Đăng 5 ngày trước
+                            </div>
                             <div class="icon-box-news-foru-index">
                                 <i class="fa-regular fa-heart "></i>
                             </div>
                         </div>
                     </div>
-<!--                    </a>-->
+                    </a>
                 </div>
             </div>
-            
-            <div class="col-12 col-md-3 mb-4">
-                <div class="room-item">
-                    <div class="room-poster rounded overflow-hidden">
-                        <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">
-                    </div>
-                    <p class="mt-2">Hà Nội</p>
-                </div>
-            </div>
-            <div class="col-12 col-md-3 mb-4">
-                <div class="room-item">
-                    <div class="room-poster rounded overflow-hidden">
-                        <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">
-                    </div>
-                    <p class="mt-2">Hà Nội</p>
-                </div>
-            </div>
-            <div class="col-12 col-md-3 mb-4">
-                <div class="room-item">
-                    <div class="room-poster rounded overflow-hidden">
-                        <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">
-                    </div>
-                    <p class="mt-2">Hà Nội</p>
-                </div>
-            </div>
-            <div class="col-12 col-md-3 mb-4">
-                <div class="room-item">
-                    <div class="room-poster rounded overflow-hidden">
-                        <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">
-                    </div>
-                    <p class="mt-2">Hà Nội</p>
-                </div>
-            </div>
-            <div class="col-12 col-md-3 mb-4">
-                <div class="room-item">
-                    <div class="room-poster rounded overflow-hidden">
-                        <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">
-                    </div>
-                    <p class="mt-2">Hà Nội</p>
-                </div>
-            </div>
-            <div class="col-12 col-md-3 mb-4">
-                <div class="room-item">
-                    <div class="room-poster rounded overflow-hidden">
-                        <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">
-                    </div>
-                    <p class="mt-2">Hà Nội</p>
-                </div>
-            </div>
-            <div class="col-12 col-md-3 mb-4">
-                <div class="room-item">
-                    <div class="room-poster rounded overflow-hidden">
-                        <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">
-                    </div>
-                    <p class="mt-2">Hà Nội</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    </section>
-    <!-- phần nổi bật -->
+<!--            Phòng trọ nổi bật-->
     <section class="py-5">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-2">
@@ -293,70 +237,90 @@
                 <a href="#">Xem thêm</a>
             </div>
             <div class="row justify-content-center">
-                <div class="col-12 col-md-3 mb-4">
-                    <div class="room-item">
-                        <div class="room-poster rounded overflow-hidden">
-                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">
-                        </div>
-                        <p class="mt-2">Hà Nội</p>
+                <div class="col-12 col-md-3 mb-4" th:each="room : ${ListFavRoom}">
+                    <div class="room-item" >
+                        <a th:href="@{/room/{id}/{slug}(id=${room.id}, slug=${room.slug})}">
+                            <div class="room-poster rounded overflow-hidden" >
+                                <img src="/web-assets/image/hcm.webp" alt="Room Image">
+                            </div>
+                            <div class="item-details-news-foru-index mt-1 ml-2 mr-2 mb-2">
+                                <div class="room-title-news-foru-index " th:text="${room.title}" >Room Title ,23 Main Street,23 Main Streetroom-title-news-foruroom-title-news-foru</div>
+                                <div class="room-price-news-foru-index " th:text="${room.price}" >2 tr - 100 m2</div>
+                                <div class="room-address-news-foru-index ">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <span th:text=" ${room.district.name} + ', ' + ${room.province.name}"></span>
+                                </div>
+                                <div class="item-footer-news-foru-index  mt-3">
+                                    <div class="post-time-news-foru-index"
+                                         th:text="${T(java.time.Duration).between(room.createdAt, T(java.time.LocalDateTime).now()).toDays()} + ' ngày trước'">
+                                        Đăng 5 ngày trước
+                                    </div>
+                                    <div class="icon-box-news-foru-index">
+                                        <i class="fa-regular fa-heart "></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
-                <div class="col-12 col-md-3 mb-4">
-                    <div class="room-item">
-                        <div class="room-poster rounded overflow-hidden">
-                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">
-                        </div>
-                        <p class="mt-2">Hà Nội</p>
-                    </div>
-                </div>
-                <div class="col-12 col-md-3 mb-4">
-                    <div class="room-item">
-                        <div class="room-poster rounded overflow-hidden">
-                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">
-                        </div>
-                        <p class="mt-2">Hà Nội</p>
-                    </div>
-                </div>
-                <div class="col-12 col-md-3 mb-4">
-                    <div class="room-item">
-                        <div class="room-poster rounded overflow-hidden">
-                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">
-                        </div>
-                        <p class="mt-2">Hà Nội</p>
-                    </div>
-                </div>
-                <div class="col-12 col-md-3 mb-4">
-                    <div class="room-item">
-                        <div class="room-poster rounded overflow-hidden">
-                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">
-                        </div>
-                        <p class="mt-2">Hà Nội</p>
-                    </div>
-                </div>
-                <div class="col-12 col-md-3 mb-4">
-                    <div class="room-item">
-                        <div class="room-poster rounded overflow-hidden">
-                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">
-                        </div>
-                        <p class="mt-2">Hà Nội</p>
-                    </div>
-                </div>
-                <div class="col-12 col-md-3 mb-4">
-                    <div class="room-item">
-                        <div class="room-poster rounded overflow-hidden">
-                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">
-                        </div>
-                        <p class="mt-2">Hà Nội</p>
-                    </div>
-                </div>
-                <div class="col-12 col-md-3 mb-4">
-                    <div class="room-item">
-                        <div class="room-poster rounded overflow-hidden">
-                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">
-                        </div>
-                        <p class="mt-2">Hà Nội</p>
-                    </div>
-                </div>
+
+
+<!--                <div class="col-12 col-md-3 mb-4">-->
+<!--                    <div class="room-item">-->
+<!--                        <div class="room-poster rounded overflow-hidden">-->
+<!--                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">-->
+<!--                        </div>-->
+<!--                        <p class="mt-2">Hà Nội</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-12 col-md-3 mb-4">-->
+<!--                    <div class="room-item">-->
+<!--                        <div class="room-poster rounded overflow-hidden">-->
+<!--                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">-->
+<!--                        </div>-->
+<!--                        <p class="mt-2">Hà Nội</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-12 col-md-3 mb-4">-->
+<!--                    <div class="room-item">-->
+<!--                        <div class="room-poster rounded overflow-hidden">-->
+<!--                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">-->
+<!--                        </div>-->
+<!--                        <p class="mt-2">Hà Nội</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-12 col-md-3 mb-4">-->
+<!--                    <div class="room-item">-->
+<!--                        <div class="room-poster rounded overflow-hidden">-->
+<!--                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">-->
+<!--                        </div>-->
+<!--                        <p class="mt-2">Hà Nội</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-12 col-md-3 mb-4">-->
+<!--                    <div class="room-item">-->
+<!--                        <div class="room-poster rounded overflow-hidden">-->
+<!--                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">-->
+<!--                        </div>-->
+<!--                        <p class="mt-2">Hà Nội</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-12 col-md-3 mb-4">-->
+<!--                    <div class="room-item">-->
+<!--                        <div class="room-poster rounded overflow-hidden">-->
+<!--                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">-->
+<!--                        </div>-->
+<!--                        <p class="mt-2">Hà Nội</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-12 col-md-3 mb-4">-->
+<!--                    <div class="room-item">-->
+<!--                        <div class="room-poster rounded overflow-hidden">-->
+<!--                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">-->
+<!--                        </div>-->
+<!--                        <p class="mt-2">Hà Nội</p>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
     </section>

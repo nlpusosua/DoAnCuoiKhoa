@@ -41,8 +41,15 @@
 }
 
 /* header bên phải */
+.login-signup-post {
+  display: flex;
+  align-items: center; /* Canh giữa theo chiều dọc */
+  gap: 10px; /* Khoảng cách giữa các phần tử */
+  justify-content: space-around; /* Canh đều các phần tử */
+  flex-direction: row; /* Sắp xếp theo chiều ngang */
+  margin-left: auto;
+}
 
-/* icon heart */
 .login-signup-post .fa-heart {
   font-size: 1.3em;
   border: none;
@@ -51,14 +58,14 @@
 
 .login-signup-post .heart-button {
   position: relative; /* Để định vị tooltip */
-  border: none; /* Remove the border */
+  border: none; /* Loại bỏ viền */
   background-color: white;
   outline: none; /* Loại bỏ viền khi focus */
   cursor: pointer; /* Thay đổi con trỏ khi di chuột */
 }
 
 .login-signup-post .heart-button .fa-heart {
-  border: none; /* Remove the border when clicked */
+  border: none; /* Loại bỏ viền khi click */
   outline: none; /* Loại bỏ viền khi focus */
 }
 
@@ -84,15 +91,6 @@
   opacity: 1; /* Hiển thị tooltip */
 }
 
-/* Add login, signup, and post buttons */
-.login-signup-post {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-left: auto;
-  justify-content: space-around;
-}
-
 .login-signup-post .nav-link {
   color: black !important; /* Màu chữ đen */
   font-family: "Fira Sans", sans-serif;
@@ -111,6 +109,11 @@
   padding: 5px 10px; /* Độ cao và độ rộng của nội dung */
   background-color: white; /* Màu nền trắng */
   position: relative;
+}
+.login-button {
+  display: flex;
+  align-items: center; /* Canh giữa theo chiều dọc */
+  gap: 10px; /* Khoảng cách giữa các phần tử */
 }
 
 /* Body *************************/
@@ -341,7 +344,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 270px;
-  height: 320px;
+  height: 340px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   background-color: #fff;
   border: 1px solid #CCCCCC;
@@ -365,6 +368,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
 }
 
 
@@ -1248,14 +1252,14 @@ h4 {
 }
 
 /*  giống phần tin dành cho bạn nhưng ở index  */
-.item-details-news-foru-index {
-  display: inline;
-}
+/*.item-details-news-foru-index {*/
+/*  display: inline;*/
+/*}*/
 
 .room-title-news-foru-index,
 .room-price-news-foru-index,
 .room-address-news-foru-index {
-  margin-bottom: 7px; /* Điều chỉnh khoảng cách giữa các phần tử */
+  margin-bottom: 0px; /* Điều chỉnh khoảng cách giữa các phần tử */
 }
 
 .room-title-news-foru-index {
@@ -1263,7 +1267,7 @@ h4 {
   font-weight: bold;
   line-height: 1.2em;
   max-height: 2.4em;
-  /* giấu chữ nếu dài quá 2 dòng */
+  min-height: 2.4em; /* Đảm bảo luôn có đủ không gian cho 2 dòng */
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -1271,6 +1275,7 @@ h4 {
   -webkit-line-clamp: 2;
   white-space: normal;
 }
+
 
 .room-price-news-foru-index {
   font-size: 18px;
@@ -1291,7 +1296,9 @@ h4 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
 }
+
 
 .post-time-news-foru-index {
   font-size: 12px;

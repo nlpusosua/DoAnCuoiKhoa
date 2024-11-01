@@ -6,6 +6,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -61,7 +62,7 @@ public class Room {
 
     @ManyToOne
     @JoinColumn(name = "province_id", nullable = false)
-    Province provinces;
+    Province province;
 
     @ManyToOne
     @JoinColumn(name = "district_id", nullable = false)
@@ -70,5 +71,6 @@ public class Room {
     @ManyToOne
     @JoinColumn(name = "ward_id", nullable = false)
     Ward ward;
+
 
 }

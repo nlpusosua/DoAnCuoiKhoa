@@ -3,6 +3,9 @@ package com.example.PhongTroOnline.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -21,4 +24,8 @@ public class Ward {
     @ManyToOne
     @JoinColumn(name = "district_id")
     private District district;
+
+    @OneToMany(mappedBy = "ward")
+    private List<Room> rooms;
+
 }

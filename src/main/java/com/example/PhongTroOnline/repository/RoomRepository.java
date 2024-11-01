@@ -7,12 +7,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
+
 @Repository
 
 public interface RoomRepository extends JpaRepository<Room, Integer> {
     boolean existsBySlug(String slug);
 //    Page<Room> findByTitle(String title, Pageable pageable);
-    List<Room> findAllByTitleAndIdAndStreetDetail(String title, Integer id, String streetDetail);
+    Page<Room> findAllByStatus(Boolean status, Pageable pageable);
 
+    Optional<Room> findByIdAndSlugAndStatus(Integer id, String slug, Boolean status);
 
 }
