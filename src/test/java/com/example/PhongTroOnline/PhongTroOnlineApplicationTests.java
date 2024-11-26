@@ -12,9 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import com.github.slugify.Slugify;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
@@ -31,8 +28,6 @@ class PhongTroOnlineApplicationTests {
 	@Autowired
 	private FavoriteRepository favoriteRepository;
 	@Autowired
-	private ImageRoomRepository imageRoomRepository;
-	@Autowired
 	private NewsRepository newsRepository;
 	@Autowired
 	private ProvinceRepository provinceRepository;
@@ -45,9 +40,11 @@ class PhongTroOnlineApplicationTests {
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
-	private VideoRoomRepository videoRoomRepository;
-	@Autowired
 	private WardRepository wardRepository;
+	@Autowired
+	private  ImageRoomRepository imageRoomRepository;
+	@Autowired
+	private VideoRoomRepository videoRoomRepository;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
@@ -96,8 +93,6 @@ class PhongTroOnlineApplicationTests {
 			categoryRepository.save(category);
 		}
 	}
-
-
 	@Test
 	void save_wards() {
 		Faker faker = new Faker(new Locale("vi")); // Sử dụng locale tiếng Việt
@@ -126,7 +121,6 @@ class PhongTroOnlineApplicationTests {
 			wardRepository.save(ward);
 		}
 	}
-
 	@Test
 	void save_districts() {
 		String[] hanoiDistricts = {
@@ -170,47 +164,6 @@ class PhongTroOnlineApplicationTests {
 			provinceRepository.save(province);
 		}
 	}
-
-	@Test
-	void save_image_rooms() {
-		Faker faker = new Faker();
-		List<Room> rooms = roomRepository.findAll(); // Lấy tất cả các Room từ database
-		for (int i = 0; i < 100; i++) {
-			String imgUrl = faker.internet().image(); // Fake URL của hình ảnh
-			ImageRoom imageRoom = new ImageRoom();
-			imageRoom.setImgUrl(imgUrl);
-
-			// Gán một Room ngẫu nhiên từ danh sách rooms cho ImageRoom
-			if (!rooms.isEmpty()) {
-				Room randomRoom = rooms.get(faker.random().nextInt(rooms.size()));
-				imageRoom.setRoom(randomRoom);
-			}
-
-			imageRoomRepository.save(imageRoom);
-			System.out.println("Saved ImageRoom with ID: " + imageRoom.getId() + ", Room ID: " + (imageRoom.getRoom() != null ? imageRoom.getRoom().getId() : "null"));
-		}
-	}
-
-	@Test
-	void save_video_rooms() {
-		Faker faker = new Faker();
-		List<Room> rooms = roomRepository.findAll(); // Lấy tất cả các Room từ database
-		for (int i = 0; i < 100; i++) {
-			String videoUrl = faker.internet().url(); // Fake URL của video
-			VideoRoom videoRoom = new VideoRoom();
-			videoRoom.setVideoUrl(videoUrl);
-
-			// Gán một Room ngẫu nhiên từ danh sách rooms cho VideoRoom
-			if (!rooms.isEmpty()) {
-				Room randomRoom = rooms.get(faker.random().nextInt(rooms.size()));
-				videoRoom.setRoom(randomRoom);
-			}
-
-			videoRoomRepository.save(videoRoom);
-			System.out.println("Saved VideoRoom with ID: " + videoRoom.getId() + ", Room ID: " + (videoRoom.getRoom() != null ? videoRoom.getRoom().getId() : "null"));
-		}
-	}
-
 	@Test
 	void save_users() {
 		Faker faker = new Faker();
@@ -299,8 +252,8 @@ class PhongTroOnlineApplicationTests {
 	}
 	@Test
 	void save_rooms() {
-		Faker faker = new Faker();
 		Random random = new Random();
+		Faker faker = new Faker(new Locale("vi"));
 		Slugify slugify = Slugify.builder().build();
 
 		List<User> users = userRepository.findAll();
@@ -309,67 +262,126 @@ class PhongTroOnlineApplicationTests {
 		List<Province> provinces = provinceRepository.findAll();
 		List<District> districts = districtRepository.findAll();
 		List<Ward> wards = wardRepository.findAll();
-		List<ImageRoom> imageRooms = imageRoomRepository.findAll();
-		List<VideoRoom> videoRooms = videoRoomRepository.findAll();
 
-		for (int i = 0; i < 100; i++) {
-			User user = users.get(random.nextInt(users.size()));
-			Category category = categories.get(random.nextInt(categories.size()));
-			Service service = services.get(random.nextInt(services.size()));
-			Province province = provinces.get(random.nextInt(provinces.size()));
-			District district = districts.get(random.nextInt(districts.size()));
-			Ward ward = wards.get(random.nextInt(wards.size()));
+		// Mảng 32 mô tả phòng trọ khác nhau
+		String[] descriptions = {
+				"Phòng trọ giá rẻ, an ninh tốt, gần trung tâm",
+				"Phòng trọ có điều hòa, gần trường học và bệnh viện",
+				"Nhà trọ sạch sẽ, thoáng mát, thuận tiện đi lại",
+				"Có chỗ để xe rộng rãi, camera an ninh",
+				"Phòng trọ đầy đủ nội thất, chỉ việc dọn vào",
+				"Gần chợ, siêu thị và các tiện ích công cộng",
+				"Phòng trọ có wifi miễn phí, giá cả phải chăng",
+				"Nhà trọ khép kín, môi trường sống yên tĩnh",
+				"Phòng mới xây, có gác xép, điện nước giá dân",
+				"Gần bến xe buýt, thuận tiện đi lại",
+				"Phòng trọ thoáng mát, ban công rộng",
+				"Có khu vực nấu ăn riêng, bảo vệ 24/24",
+				"Phòng trọ rộng rãi, có điều hòa, máy nước nóng",
+				"An ninh đảm bảo, phòng trọ có cổng riêng",
+				"Phòng có sẵn giường, tủ và bàn ghế",
+				"Giá rẻ, tiện nghi đầy đủ, gần các khu công nghiệp",
+				"Phòng trọ thoải mái, gần các quán ăn và cà phê",
+				"Có bếp riêng, thích hợp cho gia đình nhỏ",
+				"Phòng có máy giặt, gần công viên",
+				"Nhà trọ hiện đại, có thang máy và bãi đậu xe",
+				"Phòng với thiết kế độc đáo, phù hợp cho người trẻ",
+				"Có sẵn điều hòa, máy lạnh và nóng lạnh",
+				"Nhà trọ có khu vực giải trí chung",
+				"Phòng yên tĩnh, thích hợp cho việc học tập",
+				"Có camera giám sát 24/7",
+				"Phòng với ánh sáng tự nhiên, gần trung tâm thương mại",
+				"Có chỗ để xe hơi miễn phí",
+				"Phòng cho thuê theo tháng, thích hợp cho sinh viên",
+				"Có không gian xanh, sân vườn nhỏ",
+				"Phòng sạch sẽ, thoáng mát, thiết kế thông minh",
+				"Có dịch vụ dọn dẹp hàng tuần"
+		};
 
-			List<ImageRoom> selectedImageRooms = new ArrayList<>();
-			for (int j = 0; j < random.nextInt(6) + 5; j++) {
-				ImageRoom imageRoom = imageRooms.get(random.nextInt(imageRooms.size()));
-				if (!selectedImageRooms.contains(imageRoom)) {
-					selectedImageRooms.add(imageRoom);
-				}
-			}
+		// Mảng 32 địa chỉ khác nhau
+		String[] streetDetail = {
+				"12 Nguyễn Trãi", "34 Lê Lợi", "56 Trần Phú", "78 Hai Bà Trưng",
+				"90 Võ Thị Sáu", "23 Lý Thường Kiệt", "45 Phan Chu Trinh", "67 Đinh Tiên Hoàng",
+				"89 Hoàng Diệu", "101 Nguyễn Văn Cừ", "24 Lê Đại Hành", "36 Phạm Ngũ Lão",
+				"48 Nguyễn Huệ", "60 Bùi Thị Xuân", "72 Cách Mạng Tháng 8", "84 Hoàng Văn Thụ",
+				"15 Lê Thánh Tôn", "18 Trương Định", "11 Đinh Tiên Hoàng", "5 Nguyễn Hữu Cảnh",
+				"3 Trần Bình Trọng", "21 Võ Văn Tần", "33 Hoàng Hoa Thám", "50 Nguyễn Đình Chiểu",
+				"14 Lê Văn Sỹ", "22 Nguyễn Thái Bình", "19 Nguyễn Hồng Đào", "17 Trần Hưng Đạo",
+				"16 Bạch Đằng", "9 Lê Văn Qưới", "4 Lê Quý Đôn", "10 Trần Quốc Thảo",
+				"25 Lê Quang Định", "32 Đường số 7"
+		};
 
-			List<VideoRoom> selectedVideoRooms = new ArrayList<>();
-			for (int j = 0; j < random.nextInt(3) + 1; j++) {
-				VideoRoom videoRoom = videoRooms.get(random.nextInt(videoRooms.size()));
-				if (!selectedVideoRooms.contains(videoRoom)) {
-					selectedVideoRooms.add(videoRoom);
-				}
-			}
+		// Mảng 32 thành phố khác nhau
+		String[] cities = {
+				"Hà Nội", "TP HCM", "Đà Nẵng", "Cần Thơ", "Hải Phòng",
+				"Nha Trang", "Huế", "Buôn Ma Thuột", "Vũng Tàu", "Quy Nhơn",
+				"Đà Lạt", "Phan Thiết", "Long Xuyên", "Biên Hòa", "Rạch Giá", "Pleiku",
+				"Ninh Bình", "Thái Bình", "Hưng Yên", "Bắc Ninh", "Nam Định",
+				"Quảng Ninh", "Kiên Giang", "Bến Tre", "Hà Giang", "Đắk Lắk",
+				"Tây Ninh", "Đồng Nai", "Thừa Thiên Huế", "Hà Tĩnh", "Nghệ An",
+				"Lâm Đồng", "Cà Mau"
+		};
 
-			String title = faker.book().title();
-			String slug = slugify.slugify(title);
+		for (int i = 0; i < 32; i++) {
+			// Chọn ngẫu nhiên các đối tượng liên kết
+			User randomUser = users.get(random.nextInt(users.size()));
+			Category randomCategory = categories.get(random.nextInt(categories.size()));
+			Service randomService = services.get(random.nextInt(services.size()));
+			Province randomProvince = provinces.get(random.nextInt(provinces.size()));
+			District randomDistrict = districts.get(random.nextInt(districts.size()));
+			Ward randomWard = wards.get(random.nextInt(wards.size()));
 
-			// Check for duplicate slug and append a suffix if needed
-			int suffix = 1;
-			while (roomRepository.existsBySlug(slug)) {
-				slug = slugify.slugify(title) + "-" + suffix++;
-			}
+			String title = cities[i % cities.length] + ", cho thuê trọ " + faker.number().numberBetween(20, 400) + "m²"; // Sử dụng % để đảm bảo có đủ thành phố
+
+			// Tạo thời gian ngẫu nhiên cho ngày tạo
+			LocalDateTime createdAt = LocalDateTime.now().minusDays(random.nextInt(30)).withSecond(0).withNano(0);
+			LocalDateTime expiresAt = createdAt.plusMonths(1);
 
 			Room room = Room.builder()
 					.title(title)
-					.slug(slug)
-					.description(faker.lorem().paragraph(2)) // Giới hạn độ dài
-					.gender(Gender.values()[random.nextInt(Gender.values().length)])
-					.price(faker.number().numberBetween(100000, 10000000))
-					.areas(faker.number().numberBetween(15, 150))
-					.createdAt(LocalDateTime.now())
-					.updatedAt(LocalDateTime.now())
-					.expiresAt(LocalDateTime.now().plusMonths(1))
-					.status(random.nextBoolean())
-					.map("https://maps.google.com/?q=" + faker.address().latitude() + "," + faker.address().longitude())
-					.streetDetail(faker.address().streetAddress())
-					.user(user)
-					.category(category)
-					.services(service)
-					.province(province)
-					.district(district)
-					.ward(ward)
+					.slug(slugify.slugify(title))
+					.description(descriptions[i % descriptions.length]) // 32 mô tả phòng trọ khác nhau
+					.gender(Gender.values()[random.nextInt(Gender.values().length)]) // Random gender
+					.price(faker.number().numberBetween(1_000_000, 20_000_000))   // Định dạng giá có đơn vị VND
+					.areas(faker.number().numberBetween(15, 100)) // Diện tích phòng ngẫu nhiên
+					.createdAt(createdAt) // Ngày tạo không có giây
+					.updatedAt(createdAt) // Ngày cập nhật bằng với createdAt
+					.expiresAt(expiresAt) // Ngày hết hạn không có giây
+					.poster("https://placehold.co/600x400?text=Room+" + (i + 1)) // Cập nhật địa chỉ poster với số phòng
+					.trailer("https://www.youtube.com/embed/sampleTrailer")
+					.status(faker.bool().bool())
+					.map("https://www.google.com/maps/place/fakeLocation")
+					.streetDetail(streetDetail[i % streetDetail.length]) // Sử dụng % để đảm bảo có đủ địa chỉ
+					.user(randomUser)
+					.category(randomCategory)
+					.services(randomService)
+					.province(randomProvince)
+					.district(randomDistrict)
+					.ward(randomWard)
 					.build();
 
+			// Lưu room vào repository
 			roomRepository.save(room);
+
+			// Tạo dữ liệu cho ImageRoom
+			int imageCount = random.nextInt(5) + 5; // 5 đến 10 hình ảnh
+			for (int j = 0; j < imageCount; j++) {
+				ImageRoom imageRoom = new ImageRoom();
+				imageRoom.setImgUrl("https://placehold.co/600x400?text=Image+" + (j + 1));
+				imageRoom.setRoom(room);
+				imageRoomRepository.save(imageRoom); // Lưu từng hình ảnh vào repository
+			}
+
+			// Tạo dữ liệu cho VideoRoom
+			int videoCount = random.nextInt(3) + 1; // 1 đến 3 video
+			for (int j = 0; j < videoCount; j++) {
+				VideoRoom videoRoom = new VideoRoom();
+				videoRoom.setVideoUrl("https://www.youtube.com/embed/sampleVideo" + (j + 1));
+				videoRoom.setRoom(room);
+				videoRoomRepository.save(videoRoom); // Lưu từng video vào repository
+			}
 		}
 	}
-
 
 	@Test
 	void save_news() {

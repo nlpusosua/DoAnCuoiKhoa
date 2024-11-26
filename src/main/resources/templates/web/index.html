@@ -13,47 +13,7 @@
 </head>
 <body>
     <!-- header  -->
-    <nav class="navbar navbar-expand-lg bg-dark">
-        <a class="navbar-brand" href="/">
-            <img src="/web-assets/image/logo.png" alt="logo" class="logo">
-        </a>
-        <!-- bên trái -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link text-white" href="/">Trang Chủ <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Cho thuê phòng trọ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Nhà cho thuê</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Cho thuê căn hộ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Tìm người ở ghép</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">News</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Bảng dịch vụ</a>
-                </li>
-            </ul>
-        </div>
-        <!-- bên phải -->
-        <div class="login-signup-post">
-            <button class="heart-button"><i class="fa-regular fa-heart">
-                <span class="tooltip">Danh sách tin đã lưu</span>
-            </i></button>
-            
-            <a class="nav-link text-white" href="/login">Đăng nhập</a>
-            <a class="nav-link text-white" href="#">Đăng ký</a>
-            <button class="post-button">Đăng tin</button>
-        </div>
-    </nav>
+    <th:block th:replace="~{/web/fragments/header :: .navbar}"></th:block>
     <!-- Sreaching bar -->
     <div class="search-container">
         <div class="search-box">
@@ -193,21 +153,21 @@
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
     </div>
 <!-- ô hiện thị các phòng trọ -->
     <section class="py-5">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-2">
             <h3>Phòng trọ dành cho bạn</h3>
-            <a href="#">Xem thêm</a>
+            <a href="/phong-tro-cho-ban">Xem thêm</a>
         </div>
         <div class="row justify-content-center">
             <div class="col-12 col-md-3 mb-4" th:each="room : ${listRoom}">
                 <div class="room-item" >
                     <a th:href="@{/room/{id}/{slug}(id=${room.id}, slug=${room.slug})}">
-                    <div class="room-poster rounded overflow-hidden">
-                        <img src="/web-assets/image/hanoi.jpg" alt="Room Image">
+                    <div class="room-poster rounded overflow-hidden" >
+                        <img src="/web-assets/image/hanoi.jpg" th:src="${room.poster}" th:alt="${room.title}">
                     </div>
                     <div class="item-details-news-foru-index mt-1 ml-2 mr-2 mb-2">
                         <div class="room-title-news-foru-index " th:text="${room.title}" >Room Title ,23 Main Street,23 Main Streetroom-title-news-foruroom-title-news-foru</div>
@@ -218,7 +178,7 @@
                         </div>
                         <div class="item-footer-news-foru-index  mt-3">
                             <div class="post-time-news-foru-index"
-                                 th:text="${T(java.time.Duration).between(room.createdAt, T(java.time.LocalDateTime).now()).toDays()} + ' ngày trước'">
+                                 th:text="${#temporals.format(room.createdAt, 'dd/MM/yyyy')} ">
                                 Đăng 5 ngày trước
                             </div>
                             <div class="icon-box-news-foru-index">
@@ -234,14 +194,14 @@
         <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <h3>Phòng trọ nổi bật</h3>
-                <a href="#">Xem thêm</a>
+                <a href="/phong-tro-cho-ban">Xem thêm</a>
             </div>
             <div class="row justify-content-center">
-                <div class="col-12 col-md-3 mb-4" th:each="room : ${ListFavRoom}">
+                <div class="col-12 col-md-3 mb-4" th:each="room : ${listFavRoom}">
                     <div class="room-item" >
                         <a th:href="@{/room/{id}/{slug}(id=${room.id}, slug=${room.slug})}">
                             <div class="room-poster rounded overflow-hidden" >
-                                <img src="/web-assets/image/hcm.webp" alt="Room Image">
+                                <img src="/web-assets/image/hcm.webp" th:src="${room.poster}" alt="Room Image">
                             </div>
                             <div class="item-details-news-foru-index mt-1 ml-2 mr-2 mb-2">
                                 <div class="room-title-news-foru-index " th:text="${room.title}" >Room Title ,23 Main Street,23 Main Streetroom-title-news-foruroom-title-news-foru</div>
@@ -263,193 +223,91 @@
                         </a>
                     </div>
                 </div>
-
-
-<!--                <div class="col-12 col-md-3 mb-4">-->
-<!--                    <div class="room-item">-->
-<!--                        <div class="room-poster rounded overflow-hidden">-->
-<!--                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">-->
-<!--                        </div>-->
-<!--                        <p class="mt-2">Hà Nội</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12 col-md-3 mb-4">-->
-<!--                    <div class="room-item">-->
-<!--                        <div class="room-poster rounded overflow-hidden">-->
-<!--                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">-->
-<!--                        </div>-->
-<!--                        <p class="mt-2">Hà Nội</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12 col-md-3 mb-4">-->
-<!--                    <div class="room-item">-->
-<!--                        <div class="room-poster rounded overflow-hidden">-->
-<!--                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">-->
-<!--                        </div>-->
-<!--                        <p class="mt-2">Hà Nội</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12 col-md-3 mb-4">-->
-<!--                    <div class="room-item">-->
-<!--                        <div class="room-poster rounded overflow-hidden">-->
-<!--                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">-->
-<!--                        </div>-->
-<!--                        <p class="mt-2">Hà Nội</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12 col-md-3 mb-4">-->
-<!--                    <div class="room-item">-->
-<!--                        <div class="room-poster rounded overflow-hidden">-->
-<!--                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">-->
-<!--                        </div>-->
-<!--                        <p class="mt-2">Hà Nội</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12 col-md-3 mb-4">-->
-<!--                    <div class="room-item">-->
-<!--                        <div class="room-poster rounded overflow-hidden">-->
-<!--                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">-->
-<!--                        </div>-->
-<!--                        <p class="mt-2">Hà Nội</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12 col-md-3 mb-4">-->
-<!--                    <div class="room-item">-->
-<!--                        <div class="room-poster rounded overflow-hidden">-->
-<!--                            <img class="w-100 h-100" src="https://via.placeholder.com/380x200" alt="">-->
-<!--                        </div>-->
-<!--                        <p class="mt-2">Hà Nội</p>-->
-<!--                    </div>-->
-<!--                </div>-->
             </div>
         </div>
     </section>
     <!--news -->
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center mb-2 mt-4">
-            <h3>tin tức</h3>
-            <a href="">Xem thêm</a>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <div class="news-item bg-body-tertiary p-4 rounded">
-                    <h5>Top 10 phim hay nhất thế giới</h5>
-                    <p>Jan 8, 2083</p>
-                    <p>phim hay nhất thế giới</p>
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center mb-2 mt-4">
+                    <h3>Tin tức phòng trọ</h3>
+                    <a href="">Xem thêm</a>
                 </div>
-            </div>
-            <div class="col-6">
-                <div class="news-item bg-body-tertiary p-4 rounded">
-                    <h5>Top 10 phim hành động hay nhất thế giới</h5>
-                    <p>Oct 8, 2065</p>
-                    <p>phim hành động hay nhất thế giới</p>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="news-item bg-body-tertiary p-4 rounded">
-                    <h5>Top 10 phim khoa học hay nhất thế giới</h5>
-                    <p>Feb 18, 2053</p>
-                    <p>phim khoa học hay nhất thế giới</p>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="news-item bg-body-tertiary p-4 rounded">
-                    <h5>Top 10 phim tình cảm hay nhất thế giới</h5>
-                    <p>Dec 17, 2033</p>
-                    <p>phim tình cảm hay nhất thế giới</p>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="news-item bg-body-tertiary p-4 rounded">
-                    <h5>Top 10 phim bạo lực hay nhất thế giới</h5>
-                    <p>May 15, 2003</p>
-                    <p>phim bạo lực hay nhất thế giới</p>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="news-item bg-body-tertiary p-4 rounded">
-                    <h5>Top 10 phim bộ hay nhất thế giới</h5>
-                    <p>July 1, 2081</p>
-                    <p>phim bộ hay nhất thế giới</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- footer -->
-    <footer class="footer bg-light py-4">
-        <div class="container">
-            <div class="row align-items-center mb-4">
-                <div class="col-md-3 text-center text-md-left">
-                    <img src="/web-assets/image/logo.png" alt="logo" class="logo">
-                </div>
-                <div class="col-md-3 hotline text-center text-md-left">
-                    <i class="fa-solid fa-phone-volume"></i>
-                    <p class="mb-0">Hotline<br><span class="phone-number">1900 6969</span></p>
-                </div>
-                <div class="col-md-3 support text-center text-md-left">
-                    <i class="fa-regular fa-circle-question"></i>
-                    <p class="mb-0">Hỗ trợ khách hàng <a href="trogiup.oceanhouse.com.vn">trogiup.oceanhouse.com.vn</a></p>
-                </div>
-                <div class="col-md-3 care text-center text-md-left">
-                    <i class="fa-solid fa-hospital-user"></i>
-                    <p class="mb-0">Chăm sóc khách hàng <a href="mailto:hotro@oceanhouse.com.vn">hotro@oceanhouse.com.vn</a></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 company-section">
-                    <div class="company-info">
-                        CÔNG TY CỔ PHẦN OCEAN HOUSE VIỆT NAM
-                    </div>
-                    <div class="address">
-                        <i class="fa-solid fa-earth-americas"></i> 112 A1, Nguyễn Qúy Đức, Thanh Xuân Bắc, Hà Nội
-                    </div>
-                    <div class="phone">
-                        <i class="fa-solid fa-phone-volume icon2"></i> 1900 6969 - 0912 345 678
-                    </div>
-                    <div class="app">
-                        <i class="fa-brands fa-google-play "></i> GooglePlay
-                        <i class="fa-brands fa-app-store-ios ic"></i> AppStore
-                    </div>
-                </div>
-                <div class="col-md-3 company-section2">
-                    <div class="flex-container">
-                        <div class="company-info">
-                            HƯỚNG DẪN
+                <div class="row">
+                    <div class="col-6">
+                        <div class="news-item bg-body-tertiary p-4 rounded">
+                            <h5>Kinh nghiệm thuê phòng trọ an toàn và tiết kiệm</h5>
+                            <p>Jan 8, 2023</p>
+                            <p>Những lưu ý khi thuê phòng trọ để đảm bảo an toàn và tiết kiệm chi phí.</p>
                         </div>
-                        <div class="us">Về chúng tôi</div>
-                        <div class="price">Báo Giá & Hỗ Trợ</div>
-                        <div class="question">Câu hỏi thường gặp</div>
-                        <div class="error">Góp ý báo lỗi</div>
-                        <div class="map">Sitemap</div>
                     </div>
-                </div>
-                <div class="col-md-3 company-section3">
-                    <div class="flex-container3 ">
-                        <div class="company-info3">QUY ĐỊNH</div>
-                        <div class="us3">Quy định đăng tin</div>
-                        <div class="price3">Quy chế hoạt động</div>
-                        <div class="question3">Điều khoản thỏa thuận</div>
-                        <div class="error3">Chính sách bảo mật</div>
-                        <div class="map3">Giải quyết khiếu nại</div>
+                    <div class="col-6">
+                        <div class="news-item bg-body-tertiary p-4 rounded">
+                            <h5>Top 10 khu vực thuê phòng giá rẻ tại Hà Nội</h5>
+                            <p>Oct 8, 2022</p>
+                            <p>Danh sách các khu vực có giá thuê phòng trọ hợp lý và tiện lợi tại Hà Nội.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 company-section4">
-                    <div class="company-info4">ĐĂNG KÝ NHẬN TIN</div>
-                    <div class="email">
-                        <input type="email" placeholder="Nhập email của bạn">
-                        <button class="subscribe-button">
-                            <i class="fa-regular fa-paper-plane"></i>
-                        </button>
+                    <div class="col-6">
+                        <div class="news-item bg-body-tertiary p-4 rounded">
+                            <h5>Các tiện ích nên có khi thuê phòng trọ</h5>
+                            <p>Feb 18, 2022</p>
+                            <p>Các tiện ích cần có khi tìm phòng trọ, giúp cuộc sống tiện nghi hơn.</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="news-item bg-body-tertiary p-4 rounded">
+                            <h5>Những điều cần lưu ý khi ký hợp đồng thuê trọ</h5>
+                            <p>Dec 17, 2021</p>
+                            <p>Các điều khoản cần chú ý trong hợp đồng để tránh rủi ro.</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="news-item bg-body-tertiary p-4 rounded">
+                            <h5>Mẹo chọn phòng trọ gần trường học, tiện ích</h5>
+                            <p>May 15, 2021</p>
+                            <p>Hướng dẫn chọn phòng trọ thuận tiện cho học sinh, sinh viên.</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="news-item bg-body-tertiary p-4 rounded">
+                            <h5>Cập nhật giá thuê phòng trọ tại TP.HCM</h5>
+                            <p>July 1, 2021</p>
+                            <p>Tổng quan về giá thuê phòng trọ tại các quận của TP.HCM năm 2021.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
-    
-    
-    <script src="/web-assets/js/scripts.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+
+            <!-- footer -->
+            <th:block th:replace="~{/web/fragments/footer :: .footer}"></th:block>
+
+
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+                    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+                    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+                    crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+                    integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+                    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+            <script src="/web-assets/js/scripts.js"></script>
+            <script>
+                document.getElementById("logoutButton").addEventListener("click", async (event) => {
+                    event.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ a
+                    try {
+                        await axios.post("/api/auth/logout");
+                        setTimeout(() => {
+                            window.location.href = '/';
+                        }, 1000); // sau 1s chuyển hướng về trang chủ
+                        toastr.success("Đăng xuat thành công");
+                    } catch (error) {
+                        console.error('Error:', error);
+                        toastr.error("Đăng xuất thất bại");
+                    }
+                });
+            </script>
+    </body>
 </html>

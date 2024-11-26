@@ -27,22 +27,22 @@
                     <a class="nav-link text-white" href="/">Trang Chủ <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Cho thuê phòng trọ</a>
+                    <a class="nav-link text-white" href="/phong-tro-cho-ban">Cho thuê phòng trọ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Nhà cho thuê</a>
+                    <a class="nav-link text-white" href="/phong-tro-cho-ban">Nhà cho thuê</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Cho thuê căn hộ</a>
+                    <a class="nav-link text-white" href="/phong-tro-cho-ban">Cho thuê căn hộ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Tìm người ở ghép</a>
+                    <a class="nav-link text-white" href="/phong-tro-cho-ban">Tìm người ở ghép</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">News</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Bảng dịch vụ</a>
+                    <a class="nav-link text-white" href="/bang-gia-dich-vu">Bảng dịch vụ</a>
                 </li>
             </ul>
         </div>
@@ -172,6 +172,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
             integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js"
             integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A=="
@@ -179,31 +180,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/additional-methods.min.js"
             integrity="sha512-TiQST7x/0aMjgVTcep29gi+q5Lk5gVTUPE9XgN0g96rwtjEjLpod4mlBRKWHeBcvGBAEvJBmfDqh2hfMMmg+5A=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="/web-assets/js/scripts.js"></script>
+
 
     <script>
-        $('#form-login').validate({
-            rules: {
-                email: {
-                    required: true,
-                    email: true,
-                },
-                password: {
-                    required: true
-                }
-            },
-            messages: {
-                email: {
-                    required: "Email không được để trống",
-                    email: "Email không đúng định dạng"
-                },
-                password: {
-                    required: "Mật khẩu không được để trống",
-                }
-            },
-
-        });
-
         // Xử lý login
         const formLoginEl = document.getElementById('form-login');
         const emailEl = document.getElementById('email');
@@ -212,8 +191,13 @@
         formLoginEl.addEventListener("submit", async (e) => {
             e.preventDefault();
 
-            // Kiểm tra form đã validate không
-            if(!$('#form-login').valid()) {
+            if (emailEl.value.trim() === "") {
+                alert("Email không được để trống");
+                return;
+            }
+
+            if (passwordEl.value.trim() === "") {
+                alert("Password không được để trống");
                 return;
             }
 
@@ -225,15 +209,31 @@
             try {
                 const response = await axios.post('/api/auth/login', data);
                 if (response.status === 200) {
-                    // toastr.success("Đăng nhập thành công");
+                    alert("Đăng nhập thành công");
                     setTimeout(() => {
                         window.location.href = '/';
                     }, 1000); // sau 1s chuyển hướng về trang chủ
                 }
             } catch (error) {
-                console.log(error);
-                toastr.error(error.response.data.messages);
+                console.error(error);
+                alert("Tai khoan hoac mat khau khong dung");
             }
         })
     </script>
+    <script>
+        document.getElementById("logoutButton").addEventListener("click", async (event) => {
+            event.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ a
+            try {
+                await axios.post("/api/auth/logout");
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 1000); // sau 1s chuyển hướng về trang chủ
+                toastr.success("Đăng xuat thành công");
+            } catch (error) {
+                console.error('Error:', error);
+                toastr.error("Đăng xuất thất bại");
+            }
+        });
+    </script>
+
 

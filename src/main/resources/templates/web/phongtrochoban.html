@@ -41,22 +41,22 @@
                 >
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#">Cho thuê phòng trọ</a>
+                <a class="nav-link text-white" href="/phong-tro-cho-ban">Cho thuê phòng trọ</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#">Nhà cho thuê</a>
+                <a class="nav-link text-white" href="/phong-tro-cho-ban">Nhà cho thuê</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#">Cho thuê căn hộ</a>
+                <a class="nav-link text-white" href="/phong-tro-cho-ban">Cho thuê căn hộ</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#">Tìm người ở ghép</a>
+                <a class="nav-link text-white" href="/phong-tro-cho-ban">Tìm người ở ghép</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#">News</a>
+                <a class="nav-link text-white" href="/sale">News</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#">Bảng dịch vụ</a>
+                <a class="nav-link text-white" href="/bang-gia-dich-vu">Bảng dịch vụ</a>
             </li>
         </ul>
     </div>
@@ -87,7 +87,7 @@
         <div class="room-item">
             <a th:href="@{/room/{id}/{slug}(id=${room.id}, slug=${room.slug})}">
                 <div class="room-poster rounded overflow-hidden">
-                    <img src="/web-assets/image/hanoi.jpg" alt="Room Image">
+                    <img src="/web-assets/image/hanoi.jpg" th:src="${room.poster}"  alt="Room Image">
                 </div>
                 <div class="item-details-news-foru-index mt-1 ml-2 mr-2 mb-2">
                     <div class="room-title-news-foru-index" th:text="${room.title}">Room Title</div>

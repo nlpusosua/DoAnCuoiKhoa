@@ -11,15 +11,16 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "videoroom")
+@Table(name = "video_rooms")
 public class VideoRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    Integer id;
 
-    private String videoUrl;
+    @Column(nullable = false)
+    String videoUrl;
 
     @ManyToOne
-    @JoinColumn(name = "room_id")
-    private Room room;
+    @JoinColumn(name = "room_id", nullable = false)
+    Room room; // liên kết với bảng Room
 }
