@@ -28,51 +28,7 @@
 </head>
 <body>
 <!-- header  -->
-<nav class="navbar navbar-expand-lg bg-dark">
-    <a class="navbar-brand" href="/">
-        <img src="/web-assets/image/logo.png" alt="logo" class="logo" />
-    </a>
-    <!-- bên trái -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link text-white" href="/"
-                >Trang Chủ <span class="sr-only">(current)</span></a
-                >
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="/phong-tro-cho-ban">Cho thuê phòng trọ</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="/phong-tro-cho-ban">Nhà cho thuê</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="/phong-tro-cho-ban">Cho thuê căn hộ</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="/phong-tro-cho-ban">Tìm người ở ghép</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="/sale">News</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="/bang-gia-dich-vu">Bảng dịch vụ</a>
-            </li>
-        </ul>
-    </div>
-    <!-- bên phải -->
-    <div class="login-signup-post">
-        <button class="heart-button">
-            <i class="fa-regular fa-heart">
-                <span class="tooltip">Danh sách tin đã lưu</span>
-            </i>
-        </button>
-
-        <a class="nav-link text-white" href="/login">Đăng nhập</a>
-        <a class="nav-link text-white" href="#">Đăng ký</a>
-        <button class="post-button">Đăng tin</button>
-    </div>
-</nav>
+<th:block th:replace="~{/web/fragments/header :: header}"></th:block>
 <!--ô hiện thị phòng-->
 <style>
     .custom-row {
@@ -81,7 +37,6 @@
         margin-top: 30px;
     }
 </style>
-
 <div class="row justify-content-center custom-row">
     <div class="col-12 col-md-3 mb-4" th:each="room : ${roomPage.getContent()}">
         <div class="room-item">
@@ -110,88 +65,7 @@
         </div>
     </div>
 </div>
-
-
-
-
-
 <!--footer-->
-<footer class="footer bg-light py-4">
-    <div class="container">
-        <div class="row align-items-center mb-4">
-            <div class="col-md-3 text-center text-md-left">
-                <img src="/web-assets/image/logo.png" alt="logo" class="logo" />
-            </div>
-            <div class="col-md-3 hotline text-center text-md-left">
-                <i class="fa-solid fa-phone-volume"></i>
-                <p class="mb-0">
-                    Hotline<br /><span class="phone-number">1900 6969</span>
-                </p>
-            </div>
-            <div class="col-md-3 support text-center text-md-left">
-                <i class="fa-regular fa-circle-question"></i>
-                <p class="mb-0">
-                    Hỗ trợ khách hàng
-                    <a href="trogiup.oceanhouse.com.vn">trogiup.oceanhouse.com.vn</a>
-                </p>
-            </div>
-            <div class="col-md-3 care text-center text-md-left">
-                <i class="fa-solid fa-hospital-user"></i>
-                <p class="mb-0">
-                    Chăm sóc khách hàng
-                    <a href="mailto:hotro@oceanhouse.com.vn"
-                    >hotro@oceanhouse.com.vn</a
-                    >
-                </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 company-section">
-                <div class="company-info">CÔNG TY CỔ PHẦN OCEAN HOUSE VIỆT NAM</div>
-                <div class="address">
-                    <i class="fa-solid fa-earth-americas"></i> 112 A1, Nguyễn Qúy Đức,
-                    Thanh Xuân Bắc, Hà Nội
-                </div>
-                <div class="phone">
-                    <i class="fa-solid fa-phone-volume icon2"></i> 1900 6969 - 0912
-                    345 678
-                </div>
-                <div class="app">
-                    <i class="fa-brands fa-google-play"></i> GooglePlay
-                    <i class="fa-brands fa-app-store-ios ic"></i> AppStore
-                </div>
-            </div>
-            <div class="col-md-3 company-section2">
-                <div class="flex-container">
-                    <div class="company-info">HƯỚNG DẪN</div>
-                    <div class="us">Về chúng tôi</div>
-                    <div class="price">Báo Giá & Hỗ Trợ</div>
-                    <div class="question">Câu hỏi thường gặp</div>
-                    <div class="error">Góp ý báo lỗi</div>
-                    <div class="map">Sitemap</div>
-                </div>
-            </div>
-            <div class="col-md-3 company-section3">
-                <div class="flex-container3">
-                    <div class="company-info3">QUY ĐỊNH</div>
-                    <div class="us3">Quy định đăng tin</div>
-                    <div class="price3">Quy chế hoạt động</div>
-                    <div class="question3">Điều khoản thỏa thuận</div>
-                    <div class="error3">Chính sách bảo mật</div>
-                    <div class="map3">Giải quyết khiếu nại</div>
-                </div>
-            </div>
-            <div class="col-md-3 company-section4">
-                <div class="company-info4">ĐĂNG KÝ NHẬN TIN</div>
-                <div class="email">
-                    <input type="email" placeholder="Nhập email của bạn" />
-                    <button class="subscribe-button">
-                        <i class="fa-regular fa-paper-plane"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+<th:block th:replace="~{/web/fragments/footer :: footer}"></th:block>
 </body>
 </html>

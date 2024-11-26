@@ -27,7 +27,6 @@ public class WebController {
         List<Room> listFavRoom = roomService.getRoomsWithMostFavorites(2, 8).getContent();
         model.addAttribute("listRoom", listRoom);
         model.addAttribute("listFavRoom", listFavRoom);
-
         return "web/index";
     }
 
@@ -36,10 +35,8 @@ public class WebController {
     public String getHousePage(Model model, @PathVariable Integer id, @PathVariable String slug) {
         Room room = roomService.getRoom(id, slug, true);
         List<Room> listFavRoomHouse = roomService.getRoomsWithMostFavorites(1, 4).getContent();
-
         model.addAttribute("room", room);
         model.addAttribute("listFavRoomHouse", listFavRoomHouse);
-
         return "web/house";
     }
 

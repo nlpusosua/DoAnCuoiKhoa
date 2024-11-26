@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Navbar Example</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
-    <link rel="stylesheet" href="/web-assets/css/style.css">
-</head>
-<body>
+    <link
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+              rel="stylesheet"
+      />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+            integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="/web-assets/css/style.css" />
+  </head>
+  <body>
     <!-- header  -->
-    <th:block th:replace="~{/web/fragments/header :: .navbar}"></th:block>
+    <th:block th:replace="~{/web/fragments/header :: header}"></th:block>
     <!-- Sreaching bar -->
+    <div class="search-bar">
     <div class="search-container">
         <div class="search-box">
             <input type="text" class="search-input" placeholder="Trên toàn quốc">
@@ -155,159 +168,227 @@
             </div>
         </div>
     </div>
-<!-- ô hiện thị các phòng trọ -->
-    <section class="py-5">
-    <div class="container">
+    </div>
+    <!-- ô hiện thị các phòng trọ -->
+    <section class="rooms-section">
+      <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-2">
-            <h3>Phòng trọ dành cho bạn</h3>
-            <a href="/phong-tro-cho-ban">Xem thêm</a>
+          <h3>Phòng trọ dành cho bạn</h3>
+          <a href="/phong-tro-cho-ban">Xem thêm</a>
         </div>
         <div class="row justify-content-center">
-            <div class="col-12 col-md-3 mb-4" th:each="room : ${listRoom}">
-                <div class="room-item" >
-                    <a th:href="@{/room/{id}/{slug}(id=${room.id}, slug=${room.slug})}">
-                    <div class="room-poster rounded overflow-hidden" >
-                        <img src="/web-assets/image/hanoi.jpg" th:src="${room.poster}" th:alt="${room.title}">
-                    </div>
-                    <div class="item-details-news-foru-index mt-1 ml-2 mr-2 mb-2">
-                        <div class="room-title-news-foru-index " th:text="${room.title}" >Room Title ,23 Main Street,23 Main Streetroom-title-news-foruroom-title-news-foru</div>
-                        <div class="room-price-news-foru-index " th:text="${room.price}" >2 tr - 100 m2</div>
-                        <div class="room-address-news-foru-index ">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <span th:text=" ${room.district.name} + ', ' + ${room.province.name}"></span>
-                        </div>
-                        <div class="item-footer-news-foru-index  mt-3">
-                            <div class="post-time-news-foru-index"
-                                 th:text="${#temporals.format(room.createdAt, 'dd/MM/yyyy')} ">
-                                Đăng 5 ngày trước
-                            </div>
-                            <div class="icon-box-news-foru-index">
-                                <i class="fa-regular fa-heart "></i>
-                            </div>
-                        </div>
-                    </div>
-                    </a>
+          <div class="col-12 col-md-3 mb-4" th:each="room : ${listRoom}">
+            <div class="room-item">
+              <a
+                th:href="@{/room/{id}/{slug}(id=${room.id}, slug=${room.slug})}"
+              >
+                <div class="room-poster rounded overflow-hidden">
+                  <img
+                    src="/web-assets/image/hanoi.jpg"
+                    th:src="${room.poster}"
+                    th:alt="${room.title}"
+                  />
                 </div>
-            </div>
-<!--            Phòng trọ nổi bật-->
-    <section class="py-5">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <h3>Phòng trọ nổi bật</h3>
-                <a href="/phong-tro-cho-ban">Xem thêm</a>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-3 mb-4" th:each="room : ${listFavRoom}">
-                    <div class="room-item" >
-                        <a th:href="@{/room/{id}/{slug}(id=${room.id}, slug=${room.slug})}">
-                            <div class="room-poster rounded overflow-hidden" >
-                                <img src="/web-assets/image/hcm.webp" th:src="${room.poster}" alt="Room Image">
-                            </div>
-                            <div class="item-details-news-foru-index mt-1 ml-2 mr-2 mb-2">
-                                <div class="room-title-news-foru-index " th:text="${room.title}" >Room Title ,23 Main Street,23 Main Streetroom-title-news-foruroom-title-news-foru</div>
-                                <div class="room-price-news-foru-index " th:text="${room.price}" >2 tr - 100 m2</div>
-                                <div class="room-address-news-foru-index ">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                    <span th:text=" ${room.district.name} + ', ' + ${room.province.name}"></span>
-                                </div>
-                                <div class="item-footer-news-foru-index  mt-3">
-                                    <div class="post-time-news-foru-index"
-                                         th:text="${T(java.time.Duration).between(room.createdAt, T(java.time.LocalDateTime).now()).toDays()} + ' ngày trước'">
-                                        Đăng 5 ngày trước
-                                    </div>
-                                    <div class="icon-box-news-foru-index">
-                                        <i class="fa-regular fa-heart "></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
+                <div class="item-details-news-foru-index mt-1 ml-2 mr-2 mb-2">
+                  <div
+                    class="room-title-news-foru-index"
+                    th:text="${room.title}"
+                  >
+                    Room Title ,23 Main Street,23 Main
+                    Streetroom-title-news-foruroom-title-news-foru
+                  </div>
+                  <div
+                    class="room-price-news-foru-index"
+                    th:text="${room.price}"
+                  >
+                    2 tr - 100 m2
+                  </div>
+                  <div class="room-address-news-foru-index">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span
+                      th:text=" ${room.district.name} + ', ' + ${room.province.name}"
+                    ></span>
+                  </div>
+                  <div class="item-footer-news-foru-index mt-3">
+                    <div
+                      class="post-time-news-foru-index"
+                      th:text="${#temporals.format(room.createdAt, 'dd/MM/yyyy')}"
+                    >
+                      Đăng 5 ngày trước
                     </div>
+                    <div class="icon-box-news-foru-index">
+                      <i class="fa-regular fa-heart"></i>
+                    </div>
+                  </div>
                 </div>
+              </a>
             </div>
+          </div>
+          <!-- ... -->
         </div>
+      </div>
+    </section>
+    <!--  Phòng trọ nổi bật-->
+    <section class="py-5">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <h3>Phòng trọ nổi bật</h3>
+          <a href="/phong-tro-cho-ban">Xem thêm</a>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-3 mb-4" th:each="room : ${listFavRoom}">
+            <div class="room-item">
+              <a
+                th:href="@{/room/{id}/{slug}(id=${room.id}, slug=${room.slug})}"
+              >
+                <div class="room-poster rounded overflow-hidden">
+                  <img
+                    src="/web-assets/image/hcm.webp"
+                    th:src="${room.poster}"
+                    alt="Room Image"
+                  />
+                </div>
+                <div class="item-details-news-foru-index mt-1 ml-2 mr-2 mb-2">
+                  <div
+                    class="room-title-news-foru-index"
+                    th:text="${room.title}"
+                  >
+                    Room Title ,23 Main Street,23 Main
+                    Streetroom-title-news-foruroom-title-news-foru
+                  </div>
+                  <div
+                    class="room-price-news-foru-index"
+                    th:text="${room.price}"
+                  >
+                    2 tr - 100 m2
+                  </div>
+                  <div class="room-address-news-foru-index">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span
+                      th:text=" ${room.district.name} + ', ' + ${room.province.name}"
+                    ></span>
+                  </div>
+                  <div class="item-footer-news-foru-index mt-3">
+                    <div
+                      class="post-time-news-foru-index"
+                      th:text="${T(java.time.Duration).between(room.createdAt, T(java.time.LocalDateTime).now()).toDays()} + ' ngày trước'"
+                    >
+                      Đăng 5 ngày trước
+                    </div>
+                    <div class="icon-box-news-foru-index">
+                      <i class="fa-regular fa-heart"></i>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <!--news -->
-            <div class="container">
-                <div class="d-flex justify-content-between align-items-center mb-2 mt-4">
-                    <h3>Tin tức phòng trọ</h3>
-                    <a href="">Xem thêm</a>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <div class="news-item bg-body-tertiary p-4 rounded">
-                            <h5>Kinh nghiệm thuê phòng trọ an toàn và tiết kiệm</h5>
-                            <p>Jan 8, 2023</p>
-                            <p>Những lưu ý khi thuê phòng trọ để đảm bảo an toàn và tiết kiệm chi phí.</p>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="news-item bg-body-tertiary p-4 rounded">
-                            <h5>Top 10 khu vực thuê phòng giá rẻ tại Hà Nội</h5>
-                            <p>Oct 8, 2022</p>
-                            <p>Danh sách các khu vực có giá thuê phòng trọ hợp lý và tiện lợi tại Hà Nội.</p>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="news-item bg-body-tertiary p-4 rounded">
-                            <h5>Các tiện ích nên có khi thuê phòng trọ</h5>
-                            <p>Feb 18, 2022</p>
-                            <p>Các tiện ích cần có khi tìm phòng trọ, giúp cuộc sống tiện nghi hơn.</p>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="news-item bg-body-tertiary p-4 rounded">
-                            <h5>Những điều cần lưu ý khi ký hợp đồng thuê trọ</h5>
-                            <p>Dec 17, 2021</p>
-                            <p>Các điều khoản cần chú ý trong hợp đồng để tránh rủi ro.</p>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="news-item bg-body-tertiary p-4 rounded">
-                            <h5>Mẹo chọn phòng trọ gần trường học, tiện ích</h5>
-                            <p>May 15, 2021</p>
-                            <p>Hướng dẫn chọn phòng trọ thuận tiện cho học sinh, sinh viên.</p>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="news-item bg-body-tertiary p-4 rounded">
-                            <h5>Cập nhật giá thuê phòng trọ tại TP.HCM</h5>
-                            <p>July 1, 2021</p>
-                            <p>Tổng quan về giá thuê phòng trọ tại các quận của TP.HCM năm 2021.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-2 mt-4">
+        <h3>Tin tức phòng trọ</h3>
+        <a href="">Xem thêm</a>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="news-item bg-body-tertiary p-4 rounded">
+            <h5>Kinh nghiệm thuê phòng trọ an toàn và tiết kiệm</h5>
+            <p>Jan 8, 2023</p>
+            <p>
+              Những lưu ý khi thuê phòng trọ để đảm bảo an toàn và tiết kiệm chi
+              phí.
+            </p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="news-item bg-body-tertiary p-4 rounded">
+            <h5>Top 10 khu vực thuê phòng giá rẻ tại Hà Nội</h5>
+            <p>Oct 8, 2022</p>
+            <p>
+              Danh sách các khu vực có giá thuê phòng trọ hợp lý và tiện lợi tại
+              Hà Nội.
+            </p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="news-item bg-body-tertiary p-4 rounded">
+            <h5>Các tiện ích nên có khi thuê phòng trọ</h5>
+            <p>Feb 18, 2022</p>
+            <p>
+              Các tiện ích cần có khi tìm phòng trọ, giúp cuộc sống tiện nghi
+              hơn.
+            </p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="news-item bg-body-tertiary p-4 rounded">
+            <h5>Những điều cần lưu ý khi ký hợp đồng thuê trọ</h5>
+            <p>Dec 17, 2021</p>
+            <p>Các điều khoản cần chú ý trong hợp đồng để tránh rủi ro.</p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="news-item bg-body-tertiary p-4 rounded">
+            <h5>Mẹo chọn phòng trọ gần trường học, tiện ích</h5>
+            <p>May 15, 2021</p>
+            <p>Hướng dẫn chọn phòng trọ thuận tiện cho học sinh, sinh viên.</p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="news-item bg-body-tertiary p-4 rounded">
+            <h5>Cập nhật giá thuê phòng trọ tại TP.HCM</h5>
+            <p>July 1, 2021</p>
+            <p>
+              Tổng quan về giá thuê phòng trọ tại các quận của TP.HCM năm 2021.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- footer -->
+    <th:block th:replace="~{/web/fragments/footer :: footer}"></th:block>
 
-            <!-- footer -->
-            <th:block th:replace="~{/web/fragments/footer :: .footer}"></th:block>
-
-
-
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-                    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-                    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-                    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-                    crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
-                    integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
-                    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-            <script src="/web-assets/js/scripts.js"></script>
-            <script>
-                document.getElementById("logoutButton").addEventListener("click", async (event) => {
-                    event.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ a
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+            integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/web-assets/js/scripts.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const logoutButton = document.getElementById("logoutButton");
+            if (logoutButton) {
+                logoutButton.addEventListener("click", async (event) => {
+                    event.preventDefault();
                     try {
                         await axios.post("/api/auth/logout");
                         setTimeout(() => {
-                            window.location.href = '/';
-                        }, 1000); // sau 1s chuyển hướng về trang chủ
-                        toastr.success("Đăng xuat thành công");
+                            window.location.href = "/";
+                        }, 1000);
+                        toastr.success("Đăng xuất thành công");
                     } catch (error) {
-                        console.error('Error:', error);
+                        console.error("Error:", error);
                         toastr.error("Đăng xuất thất bại");
                     }
                 });
-            </script>
-    </body>
+            } else {
+                console.warn("Logout button không tồn tại!");
+            }
+        });
+
+    </script>
+  </body>
 </html>
