@@ -73,6 +73,10 @@
             integrity="sha512-TiQST7x/0aMjgVTcep29gi+q5Lk5gVTUPE9XgN0g96rwtjEjLpod4mlBRKWHeBcvGBAEvJBmfDqh2hfMMmg+5A=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <script th:inline="javascript">
+    const currentUser = [[${session.currentUser}]];
+    console.log(currentUser);
+    </script>
 
     <script>
         // Xử lý login
@@ -101,10 +105,9 @@
             try {
                 const response = await axios.post('/api/auth/login', data);
                 if (response.status === 200) {
-                    alert("Đăng nhập thành công");
                     setTimeout(() => {
                         window.location.href = '/';
-                    }, 1000); // sau 1s chuyển hướng về trang chủ
+                    }, 500); // sau 1s chuyển hướng về trang chủ
                 }
             } catch (error) {
                 console.error(error);

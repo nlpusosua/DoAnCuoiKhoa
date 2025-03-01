@@ -2,9 +2,12 @@ package com.example.PhongTroOnline.controller;
 
 import com.example.PhongTroOnline.entity.ImageRoom;
 import com.example.PhongTroOnline.entity.Room;
+import com.example.PhongTroOnline.entity.User;
+import com.example.PhongTroOnline.repository.UserRepository;
 import com.example.PhongTroOnline.service.ImageRoomService;
 import com.example.PhongTroOnline.service.RoomService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -66,5 +70,13 @@ public class WebController {
     public String getSalePage() {
         System.out.println("Entering /sale endpoint...");
         return "web/sale";
+    }
+    @Autowired
+    UserRepository userRepository;
+    @GetMapping("/infor/{id}")
+    public String getInfor(Model model, @PathVariable int id) {
+        Optional<User> user = userRepository.findById(id);
+        model.addAttribute("user", user);
+        return "web/infor";
     }
 }

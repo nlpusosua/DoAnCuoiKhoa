@@ -40,8 +40,8 @@
         </ul>
     </div>
     <!-- bên phải -->
-    <div class="login-signup-post">
-        <button class="heart-button"><i class="fa-regular fa-heart">
+    <div class="login-signup-post mr-5">
+        <button class="heart-button mr-3"><i class="fa-regular fa-heart">
             <span class="tooltip">Danh sách tin đã lưu</span>
         </i></button>
 
@@ -58,7 +58,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Trang quản trị</a></li>
-                        <li><a class="dropdown-item" id="user-infor">Thông tin cá nhân</a></li>
+                        <li><a class="dropdown-item" id="user-infor" th:href="@{/infor/{id}(id=${session.currentUser.id})}">Thông tin cá nhân</a></li>
                         <li><a class="dropdown-item" href="#">Lịch sử xem phòng</a></li>
                         <li><a class="dropdown-item" href="#">Phòng yêu thích</a></li>
                         <li><button id="logoutButton" class="dropdown-item">Đăng xuất</button></li>

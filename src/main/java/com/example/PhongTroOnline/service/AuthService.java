@@ -28,9 +28,10 @@ public class AuthService {
         }
         // Lưu thông tin user vào trong session để sử dụng ở các request tiếp theo
         session.setAttribute("currentUser", user);
+        System.out.println("User saved to session: " + user);
     }
 
-
+// đăng xuất
     public void logout(){
         session.setAttribute("currentUser", null);
     }

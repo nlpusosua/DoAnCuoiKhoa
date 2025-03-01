@@ -68,7 +68,6 @@
   border: none; /* Loại bỏ viền khi click */
   outline: none; /* Loại bỏ viền khi focus */
 }
-
 .login-signup-post .heart-button .tooltip {
   visibility: hidden; /* Ẩn tooltip ban đầu */
   width: 150px; /* Chiều rộng của tooltip */
@@ -78,12 +77,23 @@
   border-radius: 5px; /* Bo góc cho tooltip */
   padding: 5px 0; /* Padding trên và dưới */
   position: absolute; /* Định vị tooltip */
-  z-index: 1; /* Đảm bảo tooltip nằm trên cùng */
-  bottom: -35px; /* Vị trí của tooltip dưới icon */
-  left: 50%; /* Canh giữa tooltip theo chiều ngang */
-  margin-left: -75px; /* Dịch chuyển để tooltip canh giữa */
+  bottom: -40px; /* Di chuyển tooltip xuống dưới icon */
+  left: 50%;
+  transform: translateX(-50%);
   opacity: 0; /* Ẩn tooltip ban đầu */
   transition: opacity 0.3s; /* Hiệu ứng mờ dần */
+}
+
+.login-signup-post .heart-button .tooltip::after {
+  content: ""; /* Tạo pseudo-element */
+  position: absolute; /* Định vị mũi tên */
+  top: -10px; /* Đặt mũi tên phía trên tooltip */
+  left: 50%;
+  margin-left: -5px; /* Dịch chuyển để mũi tên canh giữa */
+  border-width: 5px; /* Kích thước mũi tên */
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.7) transparent transparent transparent; /* Màu sắc mũi tên */
+  transform: rotate(180deg); /* Xoay ngược lại 180 độ */
 }
 
 .login-signup-post .heart-button:hover .tooltip {
@@ -1354,6 +1364,102 @@ h4 {
   font-size: 16px;
   line-height: 1; /* Đảm bảo khoảng cách dòng không làm ảnh hưởng */
   margin: 0; /* Đảm bảo không có khoảng cách ngoài */
+}
+
+
+/*Thông tin cas nhân *****************************************/
+.profile-page {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Căn các khung từ trên xuống */
+  flex-wrap: wrap; /* Giữ các khung ngang nhưng xuống dòng nếu không đủ chỗ */
+  gap: 20px; /* Giữ khoảng cách giữa các khung */
+  margin: 20px 0;
+  padding-bottom: 20px; /* Giảm khoảng cách với footer */
+}
+
+
+.profile-box,
+.update-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 350px; /* Giới hạn chiều rộng */
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 5px;
+  display: inline-block;
+}
+
+/* Avatar */
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #ddd; /* Màu xám */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: #666;
+  cursor: pointer;
+  position: relative;
+  flex-direction: column;
+  border: 2px solid #ccc;
+  transition: background 0.3s;
+}
+
+.avatar:hover {
+  background: #ccc;
+}
+
+/* Văn bản tải ảnh */
+.upload-text {
+  font-size: 12px;
+  color: #007bff;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+/* Input luôn có viền */
+.form-control {
+  border: 1px solid #ccc !important;
+  box-shadow: none !important;
+}
+
+/* Đảm bảo căn giữa trên mobile */
+@media (max-width: 992px) {
+  .profile-page {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.btn-verification {
+  background-color: #FFCA2C !important;
+  border-color: #FFCA2C !important;
+  color: #000 !important;
+}
+
+.btn-verification:hover {
+  background-color: #E0B323 !important;
+  border-color: #E0B323 !important;
 }
 
 
