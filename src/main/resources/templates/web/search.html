@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
+    <title>Navbar Example</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+            rel="stylesheet"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    />
+    <!-- để ý đường dẫn này, vào trong bài phải sửa lại -->
+    <link
+            rel="stylesheet"
+            href="/lib/owlcarousel/assets/owl.theme.default.min.css"
+    />
+<!--    <link rel="stylesheet" href="/static/lib/owlcarousel/owl.carousel.min.js" />-->
+    <link rel="stylesheet" href="/web-assets/css/style.css">
+</head>
+<body>
+
+<!-- header  -->
+<th:block th:replace="~{/web/fragments/header :: header}"></th:block>
+<!--Phần hiện thị-->
+<h2>Kết quả tìm kiếm cho: "<span th:text="${keyword}"></span>"</h2>
+
+<div class="container">
+    <!-- Nếu không có kết quả -->
+    <div th:if="${roomPage.isEmpty()}">
+        <p>Không tìm thấy kết quả phù hợp.</p>
+    </div>
+    <!-- Nếu có kết quả -->
+    <div class="row justify-content-center custom-row" th:if="${not roomPage.isEmpty()}">
+        <div class="col-12 col-md-3 mb-4" th:each="room : ${roomPage.getContent()}">
+            <div class="room-item">
+                <a th:href="@{/room/{id}/{slug}(id=${room.id}, slug=${room.slug})}">
+                    <div class="room-poster rounded overflow-hidden">
+                        <img src="/web-assets/image/hanoi.jpg" th:src="${room.poster}"  alt="Room Image">
+                    </div>
+                    <div class="item-details-news-foru-index mt-1 ml-2 mr-2 mb-2">
+                        <div class="room-title-news-foru-index" th:text="${room.title}">Room Title</div>
+                        <div class="room-price-news-foru-index" th:text="${room.price}">2 tr - 100 m2</div>
+                        <div class="room-address-news-foru-index">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span th:text="${room.district.name} + ', ' + ${room.province.name}"></span>
+                        </div>
+                        <div class="item-footer-news-foru-index mt-3">
+                            <div class="post-time-news-foru-index"
+                                 th:text="${T(java.time.Duration).between(room.createdAt, T(java.time.LocalDateTime).now()).toDays()} + ' ngày trước'">
+                                Đăng 5 ngày trước
+                            </div>
+                            <div class="icon-box-news-foru-index">
+                                <i class="fa-regular fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phân trang -->
+    <div class="pagination mt-4" th:if="${totalPages > 1}">
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                    <a class="page-link" th:href="@{/search(keyword=${keyword}, page=${currentPage - 1})}">Trước</a>
+                </li>
+
+                <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+                    th:classappend="${currentPage == i} ? 'active'">
+                    <a class="page-link" th:href="@{/search(keyword=${keyword}, page=${i})}" th:text="${i + 1}"></a>
+                </li>
+
+                <li class="page-item" th:classappend="${currentPage + 1 == totalPages} ? 'disabled'">
+                    <a class="page-link" th:href="@{/search(keyword=${keyword}, page=${currentPage + 1})}">Sau</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<!--footer-->
+<th:block th:replace="~{/web/fragments/footer :: footer}"></th:block>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+></script>
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"
+></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const logoutButton = document.getElementById("logoutButton");
+        if (logoutButton) {
+            logoutButton.addEventListener("click", async (event) => {
+                event.preventDefault();
+                try {
+                    await axios.post("/api/auth/logout");
+                    setTimeout(() => {
+                        window.location.href = "/";
+                    }, 1000);
+                    toastr.success("Đăng xuất thành công");
+                } catch (error) {
+                    console.error("Error:", error);
+                    toastr.error("Đăng xuất thất bại");
+                }
+            });
+        }
+        // else {
+        //     console.warn("Logout button không tồn tại!");
+        // }
+    });
+</script>
+</body>
+</html>

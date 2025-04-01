@@ -30,8 +30,8 @@
     <div class="search-bar">
     <div class="search-container">
         <div class="search-box">
-            <input type="text" class="search-input" placeholder="Trên toàn quốc">
-            <button class="search-button">Tìm kiếm</button>
+            <input type="text" class="search-input" id="keyword" placeholder="Trên toàn quốc">
+            <button class="search-button" id="searchButton">Tìm kiếm</button>
             <div class="dropdown-search">
                 <div class="title">Bạn muốn tìm phòng trọ, nhà trọ ở khu vực nào ?</div>
                 <div class="title1">Top tỉnh thành nổi bật</div>
@@ -367,6 +367,7 @@
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/web-assets/js/scripts.js"></script>
+    <script src="/web-assets/js/sreach.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const logoutButton = document.getElementById("logoutButton");
@@ -388,7 +389,7 @@
                 console.warn("Logout button không tồn tại!");
             }
         });
-
     </script>
+
   </body>
 </html>

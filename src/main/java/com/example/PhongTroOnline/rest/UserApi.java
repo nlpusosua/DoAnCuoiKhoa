@@ -16,19 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class UserApi {
     private final UserService userService;
-
-
     // Sửa tt user
     @PutMapping("/update")
     public ResponseEntity<?> updateUser(@Valid @RequestBody UpdateUserInfor request) {
         userService.updateUser(request);
         return ResponseEntity.ok("update successfully");
     }
-
     // Sửa pass
     @PutMapping("/update/password")
     public ResponseEntity<?> updatePassword(@Valid @RequestBody UpdateUserPass request) {
-
         userService.updatePassword(request);
         return ResponseEntity.ok("update successfully");
     }
