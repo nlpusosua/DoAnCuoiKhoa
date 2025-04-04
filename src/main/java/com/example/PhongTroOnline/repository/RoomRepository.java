@@ -20,11 +20,6 @@ public interface RoomRepository extends JpaRepository<Room, Integer> {
 
     Optional<Room> findByIdAndSlugAndStatus(Integer id, String slug, Boolean status);
     @Query("SELECT r FROM Room r " +
-            "JOIN r.district d " +  // Nối với District
-            "JOIN d.provinces p " + // Nối tiếp với Province
-            "WHERE LOWER(r.title) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
-            "OR LOWER(d.name) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
-            "OR LOWER(p.name) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
-            "OR CAST(r.price AS string) LIKE CONCAT('%', :keyword, '%')")
-    Page<Room> searchByKeyword(@Param("keyword") String keyword, Pageable pageable);
+            "WHERE LOWER(r.title) LIKE LOWER(CONCAT('%', :keyword, '%'))")
+    Page<Room> searchByTitle(@Param("keyword") String keyword, Pageable pageable);
 }

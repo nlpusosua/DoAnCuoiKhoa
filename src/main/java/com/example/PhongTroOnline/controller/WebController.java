@@ -87,16 +87,17 @@ public class WebController {
                          @RequestParam(defaultValue = "0") int page,
                          @RequestParam(defaultValue = "10") int pageSize,
                          Model model) {
-        // Gọi service để tìm kiếm phòng
-        Page<Room> roomPage = roomService.searchByKeyword(keyword != null ? keyword.trim() : "",
+        Page<Room> roomPage = roomService.searchByTitle(keyword != null ? keyword.trim() : "",
                 PageRequest.of(page, pageSize));
-//        // Kiểm tra giá trị roomPage
-
-        // Đưa dữ liệu vào model để Thymeleaf hiển thị
         model.addAttribute("roomPage", roomPage);
         model.addAttribute("keyword", keyword);
 
-        return "web/search";  // Trả về template Thymeleaf
+        if (roomPage.isEmpty()) {
+            model.addAttribute("message", "Không có kết quả tìm kiếm");
+        }
+
+        return "web/search";
     }
+
 
 }
