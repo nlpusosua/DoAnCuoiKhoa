@@ -2,6 +2,7 @@ package com.example.PhongTroOnline.service;
 
 import com.example.PhongTroOnline.entity.User;
 import com.example.PhongTroOnline.exception.BadRequestException;
+import com.example.PhongTroOnline.model.request.RegisterRequest;
 import com.example.PhongTroOnline.model.request.UpdateUserInfor;
 import com.example.PhongTroOnline.model.request.UpdateUserPass;
 import com.example.PhongTroOnline.repository.UserRepository;
@@ -38,4 +39,31 @@ public class UserService {
 //      lưu thông tin user vào session dể sử dụng ở các request tiếp theo
         session.setAttribute("currentUser", user);
     }
+    public void registerUser(RegisterRequest registerRequest) {
+        // Kiểm tra email đã tồn tại chưa
+        if (userRepository.existsByEmail(registerRequest.getEmail())) {
+            throw new BadRequestException("Email đã được sử dụng");
+        }
+
+        // Kiểm tra số điện thoại đã tồn tại chưa
+        if (userRepository.existsByPhone(registerRequest.getPhone())) {
+            throw new BadRequestException("Số điện thoại đã được sử dụng");
+        }
+
+        // Tạo user mới
+        User newUser = User.builder()
+                .name(registerRequest.getName())
+                .email(registerRequest.getEmail())
+                .phone(registerRequest.getPhone())
+                .password(bCryptPasswordEncoder.encode(registerRequest.getPassword()))
+                .build();
+
+        // Lưu user vào database
+        userRepository.save(newUser);
+
+        // Lưu thông tin user vào session để sử dụng ở các request tiếp theo
+        session.setAttribute("currentUser", newUser);
+    }
+
+
 }

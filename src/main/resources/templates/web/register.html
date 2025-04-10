@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navbar Example</title>
+    <link
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+            rel="stylesheet"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+          integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="/web-assets/css/style.css" />
+</head>
+<body>
+<!-- header  -->
+<th:block th:replace="~{/web/fragments/header :: header}"></th:block>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Đăng ký tài khoản</h4>
+                </div>
+                <div class="card-body">
+                    <form id="register-form" class="form-register">
+                        <div class="mb-3">
+                            <label for="fullname" class="form-label">Họ và tên</label>
+                            <input type="text" class="form-control" id="fullname" name="fullname" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Số điện thoại</label>
+                            <input type="text" class="form-control" id="phone" name="phone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Mật khẩu</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirm-password" class="form-label">Xác nhận mật khẩu</label>
+                            <input type="password" class="form-control" id="confirm-password" name="confirmPassword" required>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Đăng ký</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--footer-->
+<th:block th:replace="~{/web/fragments/footer :: footer}"></th:block>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script th:inline="javascript">
+    const currentUser = [[${session.currentUser}]];
+    console.log(currentUser);
+</script>
+<script>
+    // Script xử lý đăng ký
+    $(document).ready(function() {
+        // Khởi tạo validate
+        $('.form-register').validate({
+            rules: {
+                fullname: {
+                    required: true
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                phone: {
+                    required: true
+                },
+                password: {
+                    required: true,
+                    minlength: 6
+                },
+                confirmPassword: {
+                    required: true,
+                    equalTo: "#password"
+                }
+            },
+            messages: {
+                fullname: {
+                    required: "Họ và tên không được để trống"
+                },
+                email: {
+                    required: "Email không được để trống",
+                    email: "Email không đúng định dạng"
+                },
+                phone: {
+                    required: "Số điện thoại không được để trống"
+                },
+                password: {
+                    required: "Mật khẩu không được để trống",
+                    minlength: "Mật khẩu phải có ít nhất 6 ký tự"
+                },
+                confirmPassword: {
+                    required: "Vui lòng xác nhận mật khẩu",
+                    equalTo: "Mật khẩu xác nhận không khớp"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function(error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.mb-3').append(error);
+            },
+            highlight: function(element) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function(element) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+        // Xử lý sự kiện submit form
+        $('#register-form').on('submit', async function(e) {
+            e.preventDefault();
+
+            if (!$(this).valid()) {
+                return;
+            }
+
+            const data = {
+                name: $('#fullname').val(),
+                email: $('#email').val(),
+                phone: $('#phone').val(),
+                password: $('#password').val()
+            };
+
+            try {
+                const response = await axios.post("/api/user/register", data);
+                toastr.success("Đăng ký tài khoản thành công!");
+
+                // Đợi 2 giây rồi chuyển hướng về trang chủ
+                setTimeout(() => {
+                    window.location.href = "/";
+                }, 2000);
+            } catch (error) {
+                console.log(error);
+                if (error.response && error.response.data) {
+                    toastr.error(error.response.data.message || "Đã xảy ra lỗi khi đăng ký!");
+                } else {
+                    toastr.error("Đã xảy ra lỗi khi đăng ký!");
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

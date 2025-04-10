@@ -167,21 +167,32 @@ class PhongTroOnlineApplicationTests {
 	@Test
 	void save_users() {
 		Faker faker = new Faker();
+		Random random = new Random();
+		String[] vietnamPrefixes = {"03", "05", "07", "08", "09"};
+
 		for (int i = 0; i < 50; i++) {
 			String name = faker.name().fullName();
+
+			// Tạo số điện thoại Việt Nam giả
+			String prefix = vietnamPrefixes[random.nextInt(vietnamPrefixes.length)];
+			String phoneNumber = prefix + String.format("%08d", random.nextInt(100000000));
+
 			User user = User.builder()
 					.name(name)
 					.email(faker.internet().emailAddress())
-					.avatar("https://placehold.co/600x400?text=" + String.valueOf(name.charAt(0)).toUpperCase()) // Fake avatar URL với chữ cái đầu của tên
-					.password("123") // Mật khẩu cố định là "123"
-					.role(i == 0 || i == 1 ? UserRole.ADMIN : UserRole.USER) // Nếu là user đầu tiên hoặc thứ hai, đặt vai trò là ADMIN, ngược lại là USER
+					.avatar("https://placehold.co/600x400?text=" + String.valueOf(name.charAt(0)).toUpperCase())
+					.password("123")
+					.role(i == 0 || i == 1 ? UserRole.ADMIN : UserRole.USER)
 					.account_balance(faker.number().numberBetween(0, 10000))
+					.phone(phoneNumber)
 					.createdAt(LocalDateTime.now())
 					.updatedAt(LocalDateTime.now())
 					.build();
+
 			userRepository.save(user);
 		}
 	}
+
 	@Test
 	void save_services() {
 		Faker faker = new Faker();

@@ -50,7 +50,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Số điện thoại</label>
-                <input type="tel" class="form-control" placeholder="Nhập số điện thoại">
+                <input type="tel" class="form-control" placeholder="Nhập số điện thoại" th:value="${user.get().getPhone()}">
             </div>
             <div class="mb-3">
                 <label class="form-label">Mật khẩu</label>
@@ -119,8 +119,6 @@
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="/web-assets/js/scripts.js"></script>
-
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const logoutButton = document.getElementById("logoutButton");

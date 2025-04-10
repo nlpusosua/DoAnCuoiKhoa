@@ -48,7 +48,7 @@
         <div class="collapse navbar-collapse justify-content-between align-items-center" id="main-menu">
             <div th:if="${session.currentUser == null}" class="d-flex justify-content-around align-items-center">
                 <a class="nav-link text-white" href="/login">Đăng nhập</a>
-                <a class="nav-link text-white" href="#">Đăng ký</a>
+                <a class="nav-link text-white" href="/register">Đăng ký</a>
                 <button class="post-button">Đăng tin</button>
             </div>
             <div th:if="${session.currentUser != null}">

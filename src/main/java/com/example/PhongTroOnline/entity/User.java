@@ -28,6 +28,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     UserRole role;
     Integer account_balance;
+    String phone;
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
 }

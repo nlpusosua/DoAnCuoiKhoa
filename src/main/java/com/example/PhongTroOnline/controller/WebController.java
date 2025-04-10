@@ -95,9 +95,12 @@ public class WebController {
         if (roomPage.isEmpty()) {
             model.addAttribute("message", "Không có kết quả tìm kiếm");
         }
-
         return "web/search";
     }
 
+    @GetMapping("/register")
+    public String getRegisterPage() {
+        return "web/register";
+    }
 
 }
