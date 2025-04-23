@@ -333,6 +333,11 @@ class PhongTroOnlineApplicationTests {
 				"Lâm Đồng", "Cà Mau"
 		};
 
+		// Mảng các loại phòng
+		String[] roomTypes = {
+				"PHONG_TRO", "NHA_NGUYEN_CAN", "CAN_HO", "CAN_HO_MINI", "CAN_HO_DICH_VU", "O_GHEP", "MAT_BANG"
+		};
+
 		for (int i = 0; i < 32; i++) {
 			// Chọn ngẫu nhiên các đối tượng liên kết
 			User randomUser = users.get(random.nextInt(users.size()));
@@ -363,6 +368,7 @@ class PhongTroOnlineApplicationTests {
 					.status(faker.bool().bool())
 					.map("https://www.google.com/maps/place/fakeLocation")
 					.streetDetail(streetDetail[i % streetDetail.length]) // Sử dụng % để đảm bảo có đủ địa chỉ
+					.roomType(roomTypes[random.nextInt(roomTypes.length)]) // Random room type
 					.user(randomUser)
 					.category(randomCategory)
 					.services(randomService)

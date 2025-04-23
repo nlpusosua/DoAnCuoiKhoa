@@ -33,6 +33,8 @@ public class Room {
     Gender gender;
 
     Integer price;
+    @Column(nullable = false)
+    String roomType;
 
     Integer areas;
 

@@ -26,7 +26,8 @@ import java.util.Optional;
 public class WebController {
     private final RoomService roomService;
     private final ImageRoomService imageRoomService;
-
+    @Autowired
+    UserRepository userRepository;
 
     @GetMapping("/")
     public String getHomePage(Model model) {
@@ -74,8 +75,7 @@ public class WebController {
         System.out.println("Entering /sale endpoint...");
         return "web/sale";
     }
-    @Autowired
-    UserRepository userRepository;
+
     @GetMapping("/infor/{id}")
     public String getInfor(Model model, @PathVariable int id) {
         Optional<User> user = userRepository.findById(id);

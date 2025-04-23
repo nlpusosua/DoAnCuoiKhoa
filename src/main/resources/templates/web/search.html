@@ -33,10 +33,153 @@
 
 <!-- header  -->
 <th:block th:replace="~{/web/fragments/header :: header}"></th:block>
-<!--Phần hiện thị-->
-<h2>Kết quả tìm kiếm cho: "<span th:text="${keyword}"></span>"</h2>
 
-<div class="container">
+<div class="container mt-5 mb-5">
+    <!-- Sreaching bar -->
+    <div class="search-bar">
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" class="search-input" id="keyword" placeholder="Trên toàn quốc">
+                <button class="search-button" id="searchButton">Tìm kiếm</button>
+                <div class="dropdown-search">
+                    <div class="title">Bạn muốn tìm phòng trọ, nhà trọ ở khu vực nào ?</div>
+                    <div class="title1">Top tỉnh thành nổi bật</div>
+                    <div class="highlighted-cities">
+                        <div class="city">
+                            <img src="/web-assets/image/hanoi.jpg" alt="Hà Nội">
+                            <div class="city-name">Hà Nội</div>
+                        </div>
+                        <div class="city">
+                            <img src="/web-assets/image/hcm.webp" alt="Hồ Chí Minh">
+                            <div class="city-name">Hồ Chí Minh</div>
+                        </div>
+                        <div class="city">
+                            <img src="/web-assets/image/danang.jpg" alt="Đà Nẵng">
+                            <div class="city-name">Đà Nẵng</div>
+                        </div>
+                        <div class="city">
+                            <img src="/web-assets/image/binhduong.jpg" alt="Bình Dương">
+                            <div class="city-name">Bình Dương</div>
+                        </div>
+                        <div class="city">
+                            <img src="/web-assets/image/dongnai.jpg" alt="Đồng Nai">
+                            <div class="city-name">Đồng Nai</div>
+                        </div>
+                        <div class="city">
+                            <img src="/web-assets/image/khanhhoa.jpeg" alt="Khánh Hòa">
+                            <div class="city-name">Khánh Hòa</div>
+                        </div>
+                    </div>
+                    <div class="title2">Tất cả tỉnh thành</div>
+                    <div class="all-cities">
+                        <div>An Giang</div>
+                        <div>Bà Rịa Vũng Tàu</div>
+                        <div>Bạc Liêu</div>
+                        <div>Bắc Kạn</div>
+                        <div>Bắc Giang</div>
+                        <div>Bắc Ninh</div>
+                        <div>Bến Tre</div>
+                        <div>Bình Dương</div>
+                        <div>Bình Định</div>
+                        <div>Bình Phước</div>
+                        <div>Bình Thuận</div>
+                        <div>Cà Mau</div>
+                        <div>Cao Bằng</div>
+                        <div>Đà Nẵng</div>
+                        <div>Đắk Lắk</div>
+                        <div>Đắk Nông</div>
+                        <div>Điện Biên</div>
+                        <div>Đồng Nai</div>
+                        <div>Đồng Tháp</div>
+                        <div>Gia Lai</div>
+                        <div>Hà Giang</div>
+                        <div>Hà Nam</div>
+                        <div>Hà Nội</div>
+                        <div>Hà Tĩnh</div>
+                        <div>Hải Dương</div>
+                        <div>Hải Phòng</div>
+                        <div>Hậu Giang</div>
+                        <div>Hòa Bình</div>
+                        <div>Hưng Yên</div>
+                        <div>Khánh Hòa</div>
+                        <div>Kiên Giang</div>
+                        <div>Kon Tum</div>
+                        <div>Lai Châu</div>
+                        <div>Lâm Đồng</div>
+                        <div>Lạng Sơn</div>
+                        <div>Lào Cai</div>
+                        <div>Long An</div>
+                        <div>Nam Định</div>
+                        <div>Nghệ An</div>
+                        <div>Ninh Bình</div>
+                        <div>Ninh Thuận</div>
+                        <div>Phú Thọ</div>
+                        <div>Phú Yên</div>
+                        <div>Quảng Bình</div>
+                        <div>Quảng Nam</div>
+                        <div>Quảng Ngãi</div>
+                        <div>Quảng Ninh</div>
+                        <div>Quảng Trị</div>
+                        <div>Sóc Trăng</div>
+                        <div>Sơn La</div>
+                        <div>Tây Ninh</div>
+                        <div>Thái Bình</div>
+                        <div>Thái Nguyên</div>
+                        <div>Thanh Hóa</div>
+                        <div>Thừa Thiên Huế</div>
+                        <div>Tiền Giang</div>
+                        <div>TP. Hồ Chí Minh</div>
+                        <div>Trà Vinh</div>
+                        <div>Tuyên Quang</div>
+                        <div>Vĩnh Long</div>
+                        <div>Vĩnh Phúc</div>
+                        <div>Yên Bái</div>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-buttons">
+                <div class="filter-button-wrapper">
+                    <button class="filter-button filter-button1" data-filter="phong-tro">Phòng trọ, nhà trọ <i class="fa-solid fa-chevron-down"></i></button>
+                    <div class="filter-dropdown filter-dropdown1">
+                        <div class="filter-dropdown-content">
+                            <div>Phòng trọ, nhà trọ</div>
+                            <div>Nhà thuê nguyên căn</div>
+                            <div>Cho thuê căn hộ</div>
+                            <div>Cho thuê căn hộ mini</div>
+                            <div>Cho thuê căn hộ dịch vụ</div>
+                            <div>Tìm người ở ghép</div>
+                            <div>Cho thuê mặt bằng</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-button-wrapper">
+                    <button class="filter-button filter-button2" data-filter="muc-gia">Mức giá <i class="fa-solid fa-chevron-down"></i></button>
+                    <div class="filter-dropdown filter-dropdown2">
+                        <div class="filter-dropdown-content">
+                            <div>0 - 1 triệu</div>
+                            <div>1 - 3 triệu</div>
+                            <div>3 - 5 triệu</div>
+                            <div>5 - 10 triệu</div>
+                            <div>10 triệu trở lên</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-button-wrapper">
+                    <button class="filter-button filter-button3" data-filter="dien-tich">Diện tích <i class="fa-solid fa-chevron-down"></i></button>
+                    <div class="filter-dropdown filter-dropdown3">
+                        <div class="filter-dropdown-content">
+                            <div>0 - 20 m²</div>
+                            <div>20 - 50 m²</div>
+                            <div>50 - 100 m²</div>
+                            <div>100 m² trở lên</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Phần hiện thị-->
+    <h2>Kết quả tìm kiếm cho: "<span th:text="${keyword}"></span>"</h2>
     <!-- Nếu không có kết quả -->
     <div th:if="${roomPage.isEmpty()}">
         <p>Không tìm thấy kết quả phù hợp.</p>
@@ -61,9 +204,7 @@
                                  th:text="${T(java.time.Duration).between(room.createdAt, T(java.time.LocalDateTime).now()).toDays()} + ' ngày trước'">
                                 Đăng 5 ngày trước
                             </div>
-                            <div class="icon-box-news-foru-index">
-                                <i class="fa-regular fa-heart"></i>
-                            </div>
+                            <a href="#" class="icon-box-news-foru-index fa-regular fa-heart" th:data-room-id="${room.id}"></a>
                         </div>
                     </div>
                 </a>
@@ -108,7 +249,10 @@
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+<script src="/web-assets/js/sreach.js"></script>
+<script src="/web-assets/js/scripts.js"></script>
+<script src="/web-assets/js/favorite.js"></script>
+<!--loggin-->
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const logoutButton = document.getElementById("logoutButton");
@@ -127,9 +271,6 @@
                 }
             });
         }
-        // else {
-        //     console.warn("Logout button không tồn tại!");
-        // }
     });
 </script>
 </body>

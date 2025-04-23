@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.Optional;
 
 public interface FavoriteRepository extends JpaRepository<Favorite, Integer> {
     @Query("SELECT f.room, COUNT(f) as favCount " +
@@ -14,4 +15,6 @@ public interface FavoriteRepository extends JpaRepository<Favorite, Integer> {
             "GROUP BY f.room " +
             "ORDER BY favCount DESC")
     Page<Object[]> findRoomsWithMostFavorites(Pageable pageable);
+    Optional<Favorite> findByUserIdAndRoomId(int userId, int roomId);
+
 }

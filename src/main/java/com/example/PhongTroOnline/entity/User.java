@@ -29,6 +29,8 @@ public class User {
     UserRole role;
     Integer account_balance;
     String phone;
+    @Column(nullable = false)
+    private String roomType;
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
 }

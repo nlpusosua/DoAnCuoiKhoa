@@ -35,4 +35,15 @@ public class AuthService {
     public void logout(){
         session.setAttribute("currentUser", null);
     }
+
+    public User getCurrentUser() {
+// Lấy thông tin người dùng từ session
+        User currentUser = (User) session.getAttribute("currentUser");
+        // Kiểm tra xem người dùng có tồn tại trong session hay không
+        if (currentUser == null) {
+            return null; // Trả về null nếu người dùng chưa đăng nhập
+        }
+
+        return currentUser;
+    }
 }

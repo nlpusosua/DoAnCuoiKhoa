@@ -56,9 +56,7 @@
                              th:text="${T(java.time.Duration).between(room.createdAt, T(java.time.LocalDateTime).now()).toDays()} + ' ngày trước'">
                             Đăng 5 ngày trước
                         </div>
-                        <div class="icon-box-news-foru-index">
-                            <i class="fa-regular fa-heart"></i>
-                        </div>
+                        <a href="#" class="icon-box-news-foru-index fa-regular fa-heart" th:data-room-id="${room.id}"></a>
                     </div>
                 </div>
             </a>
