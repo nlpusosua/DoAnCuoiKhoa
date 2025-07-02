@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.Optional;
+
 @Service
 public class FavoriteService {
     private static final Logger logger = LoggerFactory.getLogger(FavoriteService.class);
@@ -34,12 +35,6 @@ public class FavoriteService {
                 logger.warn("Room with id {} not found", roomId);
                 return FavoriteResult.ERROR;
             }
-            // Kiểm tra xem đã lưu tin này chưa
-            Optional<Favorite> existingFavorites = favoriteRepository.findByUserIdAndRoomId(currentUser.getId(), roomId);
-            if (!existingFavorites.isEmpty()) {
-                logger.info("Favorite already exists for user {} and room {}", currentUser.getId(), roomId);
-                return FavoriteResult.ALREADY_SAVED; // Đã lưu rồi
-            }
             // Tạo mới favorite
             Favorite favorite = new Favorite();
             favorite.setUser(currentUser);
@@ -47,7 +42,7 @@ public class FavoriteService {
             favorite.setCreatedAt(LocalDateTime.now());
             favoriteRepository.save(favorite);
             logger.info("Favorite saved successfully for user {} and room {}", currentUser.getId(), roomId);
-            return FavoriteResult.SAVED_NEW;
+            return FavoriteResult.SAVE;
         } catch (Exception e) {
             logger.error("Error adding favorite: {}", e.getMessage(), e);
             return FavoriteResult.ERROR;
@@ -90,4 +85,3 @@ public class FavoriteService {
         }
     }
 }
-

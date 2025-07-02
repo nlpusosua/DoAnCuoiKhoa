@@ -32,8 +32,8 @@ public class RoomService {
         // Chuyển đổi kết quả Object[] sang danh sách Room
         return resultPage.map(result -> (Room) result[0]);
     }
-    public Page<Room> searchByTitle(String keyword, Pageable pageable) {
-        return roomRepository.searchByTitle(keyword, pageable);
+    public Page<Room> search(String keyword, Pageable pageable) {
+        return roomRepository.search(keyword, pageable);
     }
 
 }

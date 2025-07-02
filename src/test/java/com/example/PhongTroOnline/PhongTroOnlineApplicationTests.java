@@ -170,7 +170,7 @@ class PhongTroOnlineApplicationTests {
 		Random random = new Random();
 		String[] vietnamPrefixes = {"03", "05", "07", "08", "09"};
 
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < 60; i++) {
 			String name = faker.name().fullName();
 
 			// Tạo số điện thoại Việt Nam giả

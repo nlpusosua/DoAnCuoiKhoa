@@ -9,11 +9,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {
     private final AuthenticationInterceptor authenticationInterceptor;
+    private final AuthorizationInterceptor authorizationInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authenticationInterceptor)
                 .addPathPatterns("/api/login/**");
+        registry.addInterceptor(authorizationInterceptor)
+                .addPathPatterns("/admin/**", "/api/admin/**");
     }
 // phan ny o b20login, dung de check khi nguoi dung nhan vao login, dùng để check xem là loại người dùng nào khi họ nhán vào link kia
+
 }

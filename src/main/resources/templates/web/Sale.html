@@ -22,7 +22,6 @@
     <img src="/web-assets/image/bđ1.jpg" alt="" class="img-fluid me-2" style="max-width: 45%;">
     <img src="/web-assets/image/bđ2.jpg" alt="" class="img-fluid" style="max-width: 45%;">
 </div>
-
 <!--footer-->
 <th:block th:replace="~{/web/fragments/footer :: footer}"></th:block>
 
@@ -59,8 +58,6 @@
                     toastr.error("Đăng xuất thất bại");
                 }
             });
-        } else {
-            console.warn("Logout button không tồn tại!");
         }
     });
 

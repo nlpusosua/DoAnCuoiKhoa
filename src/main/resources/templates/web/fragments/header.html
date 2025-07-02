@@ -57,7 +57,7 @@
                        data-bs-toggle="dropdown" aria-expanded="false" th:text="${session.currentUser.name}">
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Trang quản trị</a></li>
+                        <li><a class="dropdown-item" href="/admin/news">Trang quản trị</a></li>
                         <li><a class="dropdown-item" id="user-infor" th:href="@{/infor/{id}(id=${session.currentUser.id})}">Thông tin cá nhân</a></li>
                         <li><a class="dropdown-item" href="#">Lịch sử xem phòng</a></li>
                         <li><a class="dropdown-item" href="#">Phòng yêu thích</a></li>

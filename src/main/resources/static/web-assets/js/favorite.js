@@ -1,10 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-// Debug - Kiểm tra tất cả room ID
-    console.log("==== Checking room IDs ====");
-    document.querySelectorAll('.icon-box-news-foru-index').forEach(icon => {
-        console.log("Room ID:", icon.getAttribute('data-room-id'));
-    });
-
 // Thêm CSS cho Toast notification1
     const toastCSS = `
     .toast-container {
@@ -112,10 +106,8 @@ document.addEventListener('DOMContentLoaded', function() {
         icon.addEventListener('click', function(event) {
             event.preventDefault(); // Ngăn chặn hành động mặc định của thẻ <a>
             const roomId = this.getAttribute('data-room-id');
-            console.log("Clicked favorite for room ID:", roomId);
             // Kiểm tra ID hợp lệ
             if (!roomId || roomId.includes('${') || roomId.trim() === '') {
-                console.error("Room ID is missing or invalid:", roomId);
                 showToast("ID phòng không hợp lệ, vui lòng thử lại", "error");
                 return;
             }
@@ -175,7 +167,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function removeFavorite(roomId, iconElement) {
-        console.log("Removing favorite for room ID:", roomId);
         axios.delete('/api/favorites/remove', {
             params: {
                 roomId: roomId

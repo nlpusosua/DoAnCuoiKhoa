@@ -87,11 +87,10 @@ public class WebController {
                          @RequestParam(defaultValue = "0") int page,
                          @RequestParam(defaultValue = "10") int pageSize,
                          Model model) {
-        Page<Room> roomPage = roomService.searchByTitle(keyword != null ? keyword.trim() : "",
+        Page<Room> roomPage = roomService.search(keyword != null ? keyword.trim() : "",
                 PageRequest.of(page, pageSize));
         model.addAttribute("roomPage", roomPage);
         model.addAttribute("keyword", keyword);
-
         if (roomPage.isEmpty()) {
             model.addAttribute("message", "Không có kết quả tìm kiếm");
         }

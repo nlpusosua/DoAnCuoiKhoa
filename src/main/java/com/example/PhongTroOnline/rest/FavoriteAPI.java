@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
+
 @RestController
 @RequestMapping("/api/favorites")
 public class FavoriteAPI {
@@ -23,7 +24,6 @@ public class FavoriteAPI {
         logger.info("Received favorite request for roomId: {}", roomIdStr);
         // Chuyển đổi an toàn từ String sang Integer
         Integer roomId = null;
-
         try {
             // Nếu roomIdStr vẫn chứa ${room.id}, đây là lỗi template
             if (roomIdStr.contains("${")) {
@@ -56,19 +56,12 @@ public class FavoriteAPI {
         try {
             FavoriteResult result = favoriteService.addFavorite(roomId);
             switch (result) {
-                case SAVED_NEW:
+                case SAVE:
                     logger.info("Added favorite successfully for roomId: {}", roomId);
                     return ResponseEntity.ok(new HashMap<String, Object>() {{
                         put("success", true);
                         put("status", "new");
                         put("message", "Đã lưu tin thành công");
-                    }});
-                case ALREADY_SAVED:
-                    logger.info("Room already favorited for roomId: {}", roomId);
-                    return ResponseEntity.ok(new HashMap<String, Object>() {{
-                        put("success", true);
-                        put("status", "existing");
-                        put("message", "Bản tin này đã được lưu");
                     }});
                 default:
                     logger.warn("Failed to add favorite for roomId: {}", roomId);
@@ -127,7 +120,6 @@ public class FavoriteAPI {
     public ResponseEntity<?> removeFavorite(@RequestParam(value = "roomId", required = true) String roomIdStr) {
         logger.info("Received remove favorite request for roomId: {}", roomIdStr);
         Integer roomId = null;
-
         try {
             if (roomIdStr.contains("${")) {
                 logger.error("Invalid roomId format (template not rendered): {}", roomIdStr);
@@ -144,17 +136,6 @@ public class FavoriteAPI {
                 put("message", "ID phòng không hợp lệ");
             }});
         }
-
-        if (authService.getCurrentUser() == null) {
-            logger.warn("User not logged in");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(new HashMap<String, Object>() {{
-                        put("success", false);
-                        put("message", "Vui lòng đăng nhập để thực hiện chức năng này");
-                        put("requireLogin", true);
-                    }});
-        }
-
         try {
             FavoriteResult result = favoriteService.removeFavorite(roomId);
             switch (result) {
@@ -186,3 +167,4 @@ public class FavoriteAPI {
         }
     }
 }
+
